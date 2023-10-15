@@ -1,0 +1,8 @@
+backend/__pycache__
+backend/api/__pycache__
+backend/api/v1/__pycache__
+backend/communitycatalyst
+frontend/node_modules
+users.json
+backend/models/__pycache__
+backend/routes/__pycache__
