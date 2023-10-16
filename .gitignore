@@ -6,3 +6,4 @@ frontend/node_modules
 users.json
 backend/models/__pycache__
 backend/routes/__pycache__
+.idea

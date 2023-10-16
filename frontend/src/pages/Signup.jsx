@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import API_URL from "../config";
+import axios from 'axios';
+
 import {
 	FaEnvelope,
 	FaLock,
@@ -58,8 +60,24 @@ const Signup = () => {
 		initialValues,
 		validationSchema,
 		onSubmit: async (values) => {
+			console.log(values)
 		  try {
-			const response = await axios.post(`${API_URL}/signup`, values); // Send POST request to Flask API
+			const csrfResponse = await axios.get('http://localhost:5000/get-token');
+			console.log("CSRF Response: ", csrfResponse.data);
+			const csrfToken = csrfResponse.data["X-CSRFToken"];
+			console.log("CSRF Token: ", csrfToken);
+
+			const headers = {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': csrfToken
+			};
+			console.log(headers)
+			const response = await axios.post('http://localhost:5000/signup', values, {
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRFToken': csrfToken
+				}			}
+			);
 			console.log(response.data);
 		  } catch (error) {
 			console.error(error); // Handle errors

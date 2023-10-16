@@ -18,7 +18,7 @@ class SignupForm(FlaskForm):
                              render_kw={'placeholder': "Must be at least 8 characters"})
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
                                      render_kw={'placeholder': 'Re-enter password'})
-    submit = SubmitField('Get Started')
+    submit = SubmitField('Register')
 
     def validate_username(self, username: str):
         """

@@ -4,7 +4,6 @@
 Users table
 """
 from models.base_model import BaseModel, db
-from config import bcrypt
 from uuid import uuid4
 
 
