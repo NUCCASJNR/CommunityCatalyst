@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start-api": "cd .. && cd backend && python3 -m routes.app",
+    "start-api": "cd .. && cd backend && python3 -m app",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

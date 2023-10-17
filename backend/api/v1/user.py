@@ -58,28 +58,34 @@ def delete_user_by_id(user_id: str) -> Response:
 def post_new_user():
     """
     Adds a new user to the users table
-    :return:
-        The User obj
+    :return: The User object
     """
     form = request.get_json()
     if not form:
-        return jsonify({"error": "Not a json"})
-    if "username" not in form:
-        return jsonify({"error": "Missing username"})
-    if "email" not in form:
-        return jsonify({"error": "Missing email"})
-    if "password" not in form:
-        return jsonify({"error": "Missing password"})
-    if "first_name" not in form:
-        return jsonify({"error": "Missing firstname"})
-    if "last_name" not in form:
-        return jsonify({"error": "Missing lastname"})
-    if "verification_code" not in form:
-        return jsonify({"error": "Missing verification code"})
-    user = User()
-    for key, value in form.items():
-        setattr(user, key, value)
+        return jsonify({"error": "Not a JSON"})
+    
+    # Check for required fields
+    required_fields = ["username", "email", "password", "first_name", "last_name", "verification_code"]
+    for field in required_fields:
+        if field not in form:
+            return jsonify({"error": f"Missing {field}"})
+    
+    # Hash the password
+    hashed_password = User.hash_password(form["password"])
+    
+    # Create a new User object
+    user = User(
+        username=form["username"],
+        email=form["email"],
+        password=hashed_password,
+        first_name=form["first_name"],
+        last_name=form["last_name"],
+        verification_code=form["verification_code"]
+    )
+    
+    # Save the user to the database
     user.save()
+    
     return jsonify(user.to_dict())
 
 
@@ -87,19 +93,24 @@ def post_new_user():
 def update_user(user_id: str) -> Response | tuple[Response, int]:
     """
     Updates a user's details
-    :param user_id:  The id of the user to be updated
-    :return:
-        The updated user object in dict format
+    :param user_id: The id of the user to be updated
+    :return: The updated user object in dict format
     """
     user = User.get(user_id)
     form = request.get_json()
     if not form:
         return jsonify({"error": "Not a json"})
     keys_ignore = ["id", "created_at", "updated_at"]
+
     if user:
         for key, value in form.items():
             if key not in keys_ignore:
-                setattr(user, key, value)
+                if key == 'password':
+                    hashed_password = User.hash_password(value)
+                    setattr(user, key, hashed_password)
+                else:
+                    setattr(user, key, value)
         user.save()
         return jsonify(user.to_dict()), 201
     abort(404)
+

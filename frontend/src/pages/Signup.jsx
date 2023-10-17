@@ -60,31 +60,31 @@ const Signup = () => {
 		initialValues,
 		validationSchema,
 		onSubmit: async (values) => {
-			console.log(values)
+		  console.log(values);
+	  
 		  try {
-			const csrfResponse = await axios.get('http://localhost:5000/get-token');
-			console.log("CSRF Response: ", csrfResponse.data);
-			const csrfToken = csrfResponse.data["X-CSRFToken"];
-			console.log("CSRF Token: ", csrfToken);
-
+			const csrfResponse = await axios.get('http://0.0.0.0:5000/get-token');
+			const csrfToken = csrfResponse.data['x-csrftoken'];
+			console.log(csrfResponse)
+			console.log(csrfToken)
 			const headers = {
 				'Content-Type': 'application/json',
-				'X-CSRFToken': csrfToken
+				'x-csrftoken': csrfToken,
 			};
-			console.log(headers)
-			const response = await axios.post('http://localhost:5000/signup', values, {
+			const response = await axios.post('http://0.0.0.0:5000/signup', values, {
 				headers: {
-					'Content-Type': 'application/json',
-					'X-CSRFToken': csrfToken
-				}			}
-			);
+					'Content-Type': 'application/json',	
+					 'x-csrftoken': csrfToken,
+				},
+			});
+
 			console.log(response.data);
 		  } catch (error) {
-			console.error(error); // Handle errors
-			// You can display an error message to the user
+			console.error(error);
 		  }
 		},
 	  });
+	  
 	
   
 	return (
