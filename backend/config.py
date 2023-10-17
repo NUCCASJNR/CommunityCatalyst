@@ -22,3 +22,4 @@ else:
 
 app.config['SECRET_KEY'] = 'sg3t312388373y1'
 db = SQLAlchemy(app)
+app = Flask(__name__, template_folder="routes/templates")

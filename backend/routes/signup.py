@@ -1,6 +1,6 @@
 import secrets
 from datetime import datetime, timedelta
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 from flask_cors import cross_origin
 from flask_login import current_user
 from forms import SignupForm
@@ -15,7 +15,9 @@ def send_verification_email(user):
     user.verification_code = verification_code
     user.verification_expires_at = datetime.utcnow() + timedelta(minutes=30)
     user.save()
-
+@frontend.route('/')
+def home():
+    return render_template('index.html')
 
 @frontend.route('/signup', methods=['POST'])
 @cross_origin(allow_headers=['Content-Type', 'x-csrftoken'])
