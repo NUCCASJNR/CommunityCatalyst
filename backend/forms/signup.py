@@ -3,7 +3,7 @@
 """Forms Handler"""
 
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField
+from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models.user import User
 
@@ -43,15 +43,3 @@ class SignupForm(FlaskForm):
         email = User.find_obj_by(email=email)
         if email:
             raise ValidationError('This email already exists')
-
-
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=25)],
-                           render_kw={'placeholder': 'Enter your username'})
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)],
-                             render_kw={'placeholder': 'Enter your password'})
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
-
-class ProjectForm(FlaskForm):
-    title = TextAreaField('Title', validators=[DataRequired(), ])
