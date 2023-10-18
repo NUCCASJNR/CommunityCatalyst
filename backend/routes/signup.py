@@ -13,6 +13,9 @@ from routes.common import send_verification_email
 
 @frontend.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """
+    Signup route
+    """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = SignupForm()

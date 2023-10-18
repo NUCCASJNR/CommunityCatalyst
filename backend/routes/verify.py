@@ -9,6 +9,10 @@ from models.user import User
 
 @frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])
 def verify(verification_code):
+    """
+    Verification route
+    Verifies a user based on the verification code provided
+    """
     if current_user.is_authenticated:
         return redirect(url_for(home))
     query = {'verification_code': verification_code}

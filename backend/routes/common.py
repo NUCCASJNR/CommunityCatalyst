@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+""" module serves as a central place to store common functions used in
+different parts of The Flask application. These functions are shared and
+imported by other modules, such as routes/signup.py and routes/verify.py,
+to avoid circular import issues and promote code reusability."""
+
 from flask import render_template, url_for
 import secrets
 from datetime import datetime, timedelta
@@ -8,7 +14,8 @@ from routes import frontend
 
 def send_verification_email(user):
     """
-    Sends a verification email to a user
+    Sends a verification email to a user with a verification code
+    and a link to verify their account.
     """
 
     verification_code = secrets.token_hex(16)
