@@ -36,8 +36,9 @@ class User(BaseModel):
     first_name = db.Column(db.String(126), nullable=False)
     last_name = db.Column(db.String(126), nullable=False)
     profile_picture = db.Column(db.String(126), nullable=True)
-    verification_code = db.Column(db.String(126), nullable=False, unique=True)
-    verified = db.Column(db.Integer, default=0)
+    verified = db.Column(db.Boolean, nullable=False, default=False)
+    verification_code = db.Column(db.String(60))
+    verification_expires_at = db.Column(db.DateTime, nullable=True)
 
     @staticmethod
     def hash_password(password):
