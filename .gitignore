@@ -7,3 +7,5 @@ users.json
 backend/models/__pycache__
 backend/routes/__pycache__
 .idea
+backend/api/migrations
+backend/forms/__pycache__

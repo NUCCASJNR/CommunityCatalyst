@@ -11,13 +11,14 @@ from models.user import User
 class SignupForm(FlaskForm):
     firstName = StringField('First Name', validators=[DataRequired(), Length(min=3)])
     lastName = StringField('Last Name', validators=[DataRequired(), Length(min=3)])
-    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'placeholder': 'johndoe123@gmail.com'})
+    email = StringField('Email', validators=[DataRequired(), Email()],
+                        render_kw={'placeholder': 'johndoe123@gmail.com'})
     username = StringField('Username', validators=[DataRequired(), Length(min=3, max=25)],
                            render_kw={'placeholder': 'johndoe123'})
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)],
                              render_kw={'placeholder': "Must be at least 8 characters"})
     confirmPassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
-                                     render_kw={'placeholder': 'Confirm Password'})
+                                    render_kw={'placeholder': 'Confirm Password'})
     submit = SubmitField('Register')
 
     def validate_username(self, username: str):
