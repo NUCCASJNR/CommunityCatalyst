@@ -4,13 +4,14 @@ different parts of The Flask application. These functions are shared and
 imported by other modules, such as routes/signup.py and routes/verify.py,
 to avoid circular import issues and promote code reusability."""
 
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 import secrets
 from datetime import datetime, timedelta
 import requests
 from os import getenv
 from routes import frontend
-
+from werkzeug.utils import secure_filename
+import os
 
 def send_verification_email(user):
     """
@@ -43,6 +44,24 @@ def send_verification_email(user):
     if response.status_code == 200:
         print('Email successfully sent to user')
     print(f'Error occurred with error code: {response.status_code}')
+
+def upload_image():
+    """
+    Handles image uploading
+    """
+    if 'file' not in request.files:
+        return 'No file part'
+    file = request.files['file']
+    if file.filename == '':
+        return 'No file selected'
+    if file:
+        filename = secure_filename(file.filename)
+        upload_folder = '/tmp/community_catalyst'
+        if not os.path.exists(upload_folder):
+            os.makedirs(upload_folder)
+        file_path = os.path.join(upload_folder, filename)
+        file.save(file_path)
+        return 'File uploaded successfully'
 
 
 @frontend.route('/')

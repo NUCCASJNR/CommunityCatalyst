@@ -17,4 +17,4 @@ class ProjectForm(FlaskForm):
     end_date = DateField('End Date', format='%Y-%m-%d')
     project_picture = FileField('Project Picture', validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired(), Length(max=126)])
-    location = StringField('Location', validators=[DataRequired])
+    location = StringField('Location', validators=[DataRequired(), Length(max=126)])
