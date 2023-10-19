@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your head content here -->
+</head>
+<body>
+    <!-- Your header and navigation content here -->
+    
+    <main>
+        <section class="projects">
+            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">Your Projects</h2>
+            {% for project in projects %}
+            <div class="project" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+                <h3 style="color: #007BFF; font-size: 20px;">{{ project.title }}</h3>
+                <p style="font-size: 16px; margin-top: 10px;">Description: {{ project.description }}</p>
+                <p style="font-size: 16px;">Goal Amount: ${{ project.goal_amount }}</p>
+                <p style="font-size: 16px;">Current Amount: ${{ project.current_amount }}</p>
+                <p style="font-size: 16px;">Start Date: {{ project.start_date.strftime('%Y-%m-%d') }}</p>
+                <p style="font-size: 16px;">Category: {{ project.category }}</p>
+                <p style="font-size: 16px;">Location: {{ project.location }}</p>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <!-- Your footer content here -->
+</body>
+</html>
