@@ -56,13 +56,17 @@ def upload_image():
         return 'No file selected'
     if file:
         filename = secure_filename(file.filename)
-        upload_folder = '/tmp/community_catalyst'
-        if not os.path.exists(upload_folder):
-            os.makedirs(upload_folder)
-        file_path = os.path.join(upload_folder, filename)
-        file.save(file_path)
-        return 'File uploaded successfully'
-
+        allowed_extensions = ['jpg', 'jpeg', 'png', 'gif']
+        if '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions:
+            upload_folder = '/tmp/community_catalyst'
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+            file_path = os.path.join(upload_folder, filename)
+            file.save(file_path)
+            return file_path            
+            return 'File uploaded successfully'
+        else:
+            return 'Invalid file extension'
 
 @frontend.route('/')
 def home():

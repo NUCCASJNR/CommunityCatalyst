@@ -26,6 +26,8 @@ class Project(BaseModel):
     end_date = db.Column(db.DateTime)
     category = db.Column(db.String(126))
     location = db.Column(db.String(126))
+    contributions = db.relationship('Contribution', backref='project', lazy=True)
+    
 
     def __init__(self, *args, **kwargs):
         """

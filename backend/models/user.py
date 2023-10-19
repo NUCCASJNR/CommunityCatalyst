@@ -39,7 +39,9 @@ class User(BaseModel):
     verified = db.Column(db.Boolean, nullable=False, default=False)
     verification_code = db.Column(db.String(60))
     verification_expires_at = db.Column(db.DateTime, nullable=True)
-
+    projects = db.relationship('Project', backref='user')
+    contributions = db.relationship('Contribution', backref='user', lazy=True)
+    
     @staticmethod
     def hash_password(password):
         pwd_byte = bytes(password, encoding='utf-8')
