@@ -1,14 +1,16 @@
-from flask import jsonify, Response
+from flask import jsonify, Response, session
 from models.base_model import app
 from models.user import User
 from flask_bcrypt import Bcrypt
 
 from flask_login import LoginManager
 
+from flask_cors import CORS
 from routes import frontend
 import logging
-
+from flask_wtf.csrf import CSRFProtect, generate_csrf
 app.register_blueprint(frontend)
+csrf = CSRFProtect(app)
 app.logger.setLevel(logging.DEBUG)
 
 login_manager = LoginManager()
@@ -32,6 +34,13 @@ def error(error) -> Response:
 def forbidden_err(error):
     return jsonify({"error": "unauthorized"})
 
+@app.route('/token', methods=['GET'])
+def token():
+    # Generate a CSRF token and store it in the session
+    csrf_token = generate_csrf()
+    session['csrf_token'] = csrf_token
+    session.modified = True  # Ensure the session is saved
+    return jsonify({'X-CSRFToken': csrf_token})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

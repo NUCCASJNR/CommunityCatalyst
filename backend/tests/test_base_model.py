@@ -1,6 +1,6 @@
 import unittest
-from models.base_model import app, BaseModel, db
 
+from models.base_model import app, BaseModel, db
 
 class TestBaseModel(unittest.TestCase):
     def setUp(self):

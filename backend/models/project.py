@@ -22,6 +22,7 @@ class Project(BaseModel):
     current_amount = \
         db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     start_date = db.Column(db.DateTime, nullable=False)
+    project_picture = db.Column(db.String(126), nullable=True)
     end_date = db.Column(db.DateTime)
     category = db.Column(db.String(126))
     location = db.Column(db.String(126))

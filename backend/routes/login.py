@@ -3,11 +3,12 @@
 """Handles User Authentication and login"""
 
 from flask import redirect, render_template, flash, url_for, request
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, login_required
 from models.user import User
 from forms.login import LoginForm
 from routes import frontend
 from routes.common import home
+from models.project import Project
 
 
 @frontend.route('/login', methods=['GET', 'POST'], strict_slashes=False)
@@ -35,7 +36,7 @@ def login():
                     flash('You have been logged in', 'success')
                     if next_page:
                         return redirect(next_page)
-                    return redirect(home)
+                    return redirect('dashboard')
                 else:
                     flash('Login Unsuccessful. Please Check your username\
                         and password', 'danger')
@@ -45,4 +46,11 @@ def login():
         else:
             flash('Login Unsuccessful. Please Check your username\
                         and password', 'danger')
-    return render_template(signin.html)
+    return render_template('signin.html')
+
+
+@frontend.route('/dashboard')
+# @login_required
+def dashboard():
+    projects = Project.all()
+    return render_template('dashboard.html', projects=projects)

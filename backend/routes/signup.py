@@ -33,3 +33,4 @@ def signup():
         user.save()
         send_verification_email(user)
     return render_template('signup.html', form=form)
+
