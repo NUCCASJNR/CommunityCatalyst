@@ -24,7 +24,7 @@ def signup():
             form.validate_email(form.email)
         except ValidationError as e:
             flash(str(e), 'danger')
-            return render_template('index.html', signupform=form)
+            return render_template('../templates/index.html', signupform=form)
         print("Username and email validation passed")
         hashed_password = User.hash_password(form.password.data)
         print(hashed_password)
@@ -41,6 +41,6 @@ def signup():
         print("User created:", user)  # Print the user object
         print("User ID:", user.id)  # Print the user's ID
         return jsonify({"success": "user created"})
-    return render_template('index.html', signupform=form)
+    return render_template('../templates/index.html', signupform=form)
 
 

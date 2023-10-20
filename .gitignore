@@ -1,11 +1,11 @@
 backend/__pycache__
-backend/api/__pycache__
-backend/api/v1/__pycache__
+api/__pycache__
+api/v1/__pycache__
 backend/communitycatalyst
 frontend/node_modules
 users.json
-backend/models/__pycache__
-backend/routes/__pycache__
+models/__pycache__
+routes/__pycache__
 .idea
-backend/api/migrations
-backend/forms/__pycache__
+api/migrations
+forms/__pycache__

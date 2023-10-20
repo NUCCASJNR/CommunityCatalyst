@@ -26,7 +26,7 @@ def send_verification_email(user):
     user.save()
 
     verification_url = url_for('frontend.verify', verification_code=verification_code, _external=True, _scheme='https')
-    html_body = render_template('verification.html', username=user.username, verification_url=verification_url)
+    html_body = render_template('../templates/verification.html', username=user.username, verification_url=verification_url)
     API_KEY = getenv("ELASTIC_EMAIL")
     sender = 'info@community-catalyst.codewithalareef.tech'
     receiver = user.email
@@ -71,7 +71,7 @@ def upload_image():
 
 @frontend.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('../templates/index.html')
 
 
 @frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])
