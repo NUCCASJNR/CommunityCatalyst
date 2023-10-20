@@ -13,7 +13,7 @@ database = getenv("COMMUNITY_DB")
 password = getenv("COMMUNITY_PWD")
 host = getenv("COMMUNITY_HOST")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='templates/static')
 CORS(app, resources={r"/*": {"origins": "http://localhost:5000"}})
 
 app.config['SECRET_KEY'] = 'sg3t312388373y122wdddffccff1'
