@@ -12,7 +12,10 @@ import logging
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 app.register_blueprint(frontend)
 csrf = CSRFProtect(app)
-app.logger.setLevel(logging.DEBUG)
+# Enable SQL Alchemy query logging
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)

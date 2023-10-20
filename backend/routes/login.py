@@ -7,7 +7,7 @@ from flask_login import login_user, current_user, login_required
 from models.user import User
 from forms.login import LoginForm
 from routes import frontend
-from routes.common import home
+from routes.utils import home
 from models.project import Project
 
 

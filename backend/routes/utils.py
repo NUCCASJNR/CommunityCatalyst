@@ -12,6 +12,7 @@ from os import getenv
 from routes import frontend
 from werkzeug.utils import secure_filename
 import os
+# from routes.verify import verify
 
 def send_verification_email(user):
     """
@@ -24,13 +25,13 @@ def send_verification_email(user):
     user.verification_expires_at = datetime.utcnow() + timedelta(minutes=30)
     user.save()
 
-    verification_url = url_for('verify', verification_code=verification_code, _external=True, _scheme='https')
+    verification_url = url_for('frontend.verify', verification_code=verification_code, _external=True, _scheme='https')
     html_body = render_template('verification.html', username=user.username, verification_url=verification_url)
     API_KEY = getenv("ELASTIC_EMAIL")
-    sender = 'community-catalyst@codewithalareef.tech'
+    sender = 'info@community-catalyst.codewithalareef.tech'
     receiver = user.email
     subject = 'Account Verification'
-    url = 'https://api.elasticqemail.com/v2/email/send'
+    url = 'https://api.elasticemail.com/v2/email/send'
 
     request_payload = {
         'apikey': API_KEY,
@@ -63,11 +64,38 @@ def upload_image():
                 os.makedirs(upload_folder)
             file_path = os.path.join(upload_folder, filename)
             file.save(file_path)
-            return file_path            
-            return 'File uploaded successfully'
+            return file_path
         else:
             return 'Invalid file extension'
+
 
 @frontend.route('/')
 def home():
     return render_template('index.html')
+
+
+@frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])
+def verify(verification_code):
+    """
+    Verification route
+    Verifies a user based on the verification code provided
+    """
+    if current_user.is_authenticated:
+        return redirect(url_for(home))
+    query = {'verification_code': verification_code}
+    user = User.find_obj_by(**query)
+    if user:
+        if user.verification_expires_at and datetime.utcnow() > user.verification_expires_at:
+            user.delete()
+            flash('The verification link has expired,'
+                  ' Please signup again to receive a new verification code',
+                  'danger')
+            return redirect(url_for(home))
+        user.verified = True
+        user.verification_code = None
+        login_user(user)
+        flash('Your account has successfully been created'
+              'and you have been logged in, Happy Funding', 'success')
+    else:
+        flash('Invalid verification code. Please try again', 'danger')
+    return redirect(url_for(home))

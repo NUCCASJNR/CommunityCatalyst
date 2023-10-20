@@ -67,7 +67,7 @@
         </div>
       </nav>
       
-      <section class="probootstrap-hero" style="background-image: url(img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
+      <section class="probootstrap-hero" style="background-image: url(static/img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -205,7 +205,7 @@
       </section>
 
       
-      <section class="probootstrap-section probootstrap-bg probootstrap-section-dark" style="background-image: url(img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
+      <section class="probootstrap-section probootstrap-bg probootstrap-section-dark" style="background-image: url(static/img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row">
             <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
@@ -512,48 +512,42 @@
               <div class="probootstrap-modal-flex">
                 <div class="probootstrap-modal-figure" style="background-image: url(static/img/modal_bg.jpg);"></div>
                 <div class="probootstrap-modal-content">
-                  <form action="#" class="probootstrap-form">
-                    <form method="POST" action="/signup">
-                      {{ form.csrf_token }}
+                  <form method="POST" action="/signup">
+                    {{ signupform.csrf_token }}
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="First Name">
+                      {{ signupform.first_name.label }}
+                      {{ signupform.first_name(class="form-control", placeholder="First Name") }}
+                      {{ signupform.first_name.errors }}
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Last Name">
+                      {{ signupform.last_name.label }}
+                      {{ signupform.last_name(class="form-control", placeholder="Last Name") }}
+                      {{ signupform.last_name.errors }}
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Username">
+                      {{ signupform.username.label }}
+                      {{ signupform.username(class="form-control", placeholder="Username") }}
+                      {{ signupform.username.errors }}
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Email">
+                      {{ signupform.email.label }}
+                      {{ signupform.email(class="form-control", placeholder="Email") }}
+                      {{ signupform.email.errors }}
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Password">
+                      {{ signupform.password.label }}
+                      {{ signupform.password(class="form-control", placeholder="Password") }}
+                      {{ signupform.password.errors }}
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Confirm Password">
-                    </div>
-                    <div class="form-group clearfix mb40">
-                      <label for="remember" class="probootstrap-remember"><input type="checkbox" id="remember"> Remember Me</label>
-                      <a href="#" class="probootstrap-forgot">Forgot Password?</a>
+                      {{ signupform.confirm_password.label }}
+                      {{ signupform.confirm_password(class="form-control", placeholder="Confirm Password") }}
+                      {{ signupform.confirm_password.errors }}
                     </div>
                     <div class="form-group text-left">
                       <div class="row">
                         <div class="col-md-6">
-                          <input type="submit" class="btn btn-primary btn-block" value="Sign Up">
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="form-group probootstrap-or">
-                      <span><em>or</em></span>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <button class="btn btn-primary btn-ghost btn-block btn-connect-facebook"><span>connect with</span> Facebook</button>
-                          <button class="btn btn-primary btn-ghost btn-block btn-connect-google"><span>connect with</span> Google</button>
-                          <button class="btn btn-primary btn-ghost btn-block btn-connect-twitter"><span>connect with</span> Twitter</button>
+                          {{ signupform.submit(class="btn btn-primary btn-block", value="Sign Up") }}
                         </div>
                       </div>
                     </div>
@@ -564,6 +558,8 @@
           </div>
         </div>
       </div>
+      
+
       <!-- END modal signup -->
 
     <script src="static/js/scripts.min.js"></script>

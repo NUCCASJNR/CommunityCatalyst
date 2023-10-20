@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import requests
 from os import getenv
 api_key = getenv("ELASTIC_EMAIL")
