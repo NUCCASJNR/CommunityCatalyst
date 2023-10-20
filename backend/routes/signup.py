@@ -1,7 +1,7 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, jsonify
 from flask_login import current_user
 from forms.signup import SignupForm
-from models.user import User
+from models.user import User, db
 from routes import frontend
 from routes.common import send_verification_email
 from wtforms import ValidationError
@@ -21,7 +21,7 @@ def signup():
             form.validate_email(form.email)
         except ValidationError as e:
             flash(str(e), 'danger')
-            return render_template('signup.html', form=form)
+            return render_template('index.html', form=form)
         hashed_password = User.hash_password(form.password.data)
         user = User(
             first_name=form.firstName.data,
@@ -32,5 +32,6 @@ def signup():
         )
         user.save()
         send_verification_email(user)
-    return render_template('signup.html', form=form)
+        return jsonify({"success": "user created"})
+    return render_template('index.html', form=form)
 

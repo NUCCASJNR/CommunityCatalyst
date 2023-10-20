@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="static/css/custom.css">
 
     <!--[if lt IE 9]>
-      <script src="js/vendor/html5shiv.min.js"></script>
-      <script src="js/vendor/respond.min.js"></script>
+      <script src="static/js/vendor/html5shiv.min.js"></script>
+      <script src="static/js/vendor/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -513,6 +513,8 @@
                 <div class="probootstrap-modal-figure" style="background-image: url(static/img/modal_bg.jpg);"></div>
                 <div class="probootstrap-modal-content">
                   <form action="#" class="probootstrap-form">
+                    <form method="POST" action="/signup">
+                      {{ form.csrf_token }}
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="First Name">
                     </div>

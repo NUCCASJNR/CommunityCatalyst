@@ -2,6 +2,7 @@ from flask import jsonify, Response, session
 from models.base_model import app
 from models.user import User
 from flask_bcrypt import Bcrypt
+from flask_wtf.csrf import CSRFProtect
 
 from flask_login import LoginManager
 

@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, DecimalField, DateField, TextAreaField, FileField
 from wtforms.validators import DataRequired, Length
 
+
 class ProjectForm(FlaskForm):
     """
     Project Form class
@@ -12,7 +13,7 @@ class ProjectForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(max=126)])
     description = TextAreaField('Description', validators=[DataRequired()])
     goal_amount = DecimalField('Goal Amount', validators=[DataRequired()])
-    current_amount  = DecimalField('Current Amount', validators=[DataRequired()])
+    current_amount = DecimalField('Current Amount', validators=[DataRequired()])
     start_date = DateField('Start Date', format='%Y-%m-%d')
     end_date = DateField('End Date', format='%Y-%m-%d')
     project_picture = FileField('Project Picture', validators=[DataRequired()])
