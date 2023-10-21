@@ -10,12 +10,12 @@ from flask_cors import CORS
 from routes import frontend
 import logging
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+
 app.register_blueprint(frontend)
 csrf = CSRFProtect(app)
 # Enable SQL Alchemy query logging
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -38,6 +38,7 @@ def error(error) -> Response:
 def forbidden_err(error):
     return jsonify({"error": "unauthorized"})
 
+
 @app.route('/token', methods=['GET'])
 def token():
     # Generate a CSRF token and store it in the session
@@ -45,6 +46,7 @@ def token():
     session['csrf_token'] = csrf_token
     session.modified = True  # Ensure the session is saved
     return jsonify({'X-CSRFToken': csrf_token})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
