@@ -8,12 +8,12 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="static/member_assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/css/adminlte.min.css">
+  <link rel="stylesheet" href="static/member_assets/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   <link rel="stylesheet" href="assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">   
+  <link rel="stylesheet" href="static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+   <link rel="stylesheet" href="static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <style type="text/css">
     td p {
        margin: -0.3rem;
@@ -46,7 +46,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="../index.html">
+          <a class="nav-link" data-widget="fullscreen" href="index.html">
              <i class="fas fa-sign-out-alt"></i>
           </a>
        </li>
@@ -57,9 +57,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index.html" class="brand-link">
-        <img src="assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
-          style="opacity: .8">
+      <a href="dashboard.html" class="brand-link">
+        <img src="static/member_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
+             style="opacity: .8">
       </a>
 
       <!-- Sidebar -->
@@ -69,7 +69,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="dashboard.html" class="nav-link">
                 <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -77,7 +77,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./campaign-list.html" class="nav-link">
+              <a href="member_campaign-list.html" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
                 <p>
                   Campaign List
@@ -85,7 +85,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./gallery.html" class="nav-link">
+              <a href="gallery.html" class="nav-link">
                 <i class="nav-icon fa fa-images"></i>
                 <p>
                  Gallery
@@ -93,7 +93,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./donation.html" class="nav-link">
+              <a href="donation.html" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
                 <p>
                   Donations
@@ -101,7 +101,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./withdraw.html" class="nav-link">
+              <a href="withdraw.html" class="nav-link">
                 <i class="nav-icon fa fa-file-invoice"></i>
                 <p>
                   Withdraw Request
@@ -147,7 +147,7 @@
                         <div class="row">
                            <div class="col-md-3">
                               <div class="form-group">
-                                 <img src="assets/img/profile.png" width="150" style="border-radius: 5px"><br><br>
+                                 <img src="static/member_assets/img/profile.png" width="150" style="border-radius: 5px"><br><br>
                                  <label for="exampleInputFile">Choose Profile</label>
                                  <div class="input-group">
                                     <div class="custom-file">
@@ -242,22 +242,22 @@
       </div>
    </div>
   <!-- jQuery -->
-  <script src="assets/plugins/jquery/jquery.min.js"></script>
+  <script src="static/member_assets/plugins/jquery/jquery.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
   <!-- ChartJS -->
-  <script src="assets/plugins/chart.js/Chart.min.js"></script>
+  <script src="member_assets/plugins/chart.js/Chart.min.js"></script>
   <!-- overlayScrollbars -->
-  <script src="assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="assets/js/adminlte.js"></script>   
+  <script src="static/member_assets/js/adminlte.js"></script>
    <!-- DataTables  & Plugins -->
-   <script src="assets/tables/datatables/jquery.dataTables.min.js"></script>
-   <script src="assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-   <script src="assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-   <script src="assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+   <script src="static/member_assets/tables/datatables/jquery.dataTables.min.js"></script>
+   <script src="static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+   <script src="static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+   <script src="static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
   <script>
       $(function () {
          $("#example1").DataTable();
