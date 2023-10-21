@@ -1,7 +1,7 @@
-backend/__pycache__
+__pycache__
 api/__pycache__
 api/v1/__pycache__
-backend/communitycatalyst
+communitycatalyst
 frontend/node_modules
 users.json
 models/__pycache__
