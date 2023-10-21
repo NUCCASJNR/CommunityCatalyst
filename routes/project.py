@@ -8,7 +8,7 @@ from forms.project import ProjectForm
 from routes import frontend
 from routes.utils import upload_image
 from models.project import Project
-from flask import flash
+from flask import flash, redirect, render_template, url_for
 from flask_login import login_required
 
 
@@ -35,6 +35,8 @@ def create_project():
         )
         project.save()
         flash('Project created successfully', 'success')
+        return render_template('create_project.html', form=form)
+    return render_template('create_project.html', form=form)
 
 
 @frontend.route('/update_project/<user_id>/<id>', methods=['PUT'])
@@ -43,3 +45,8 @@ def update_project(user_id, id):
     """
     Updates a project using the id provided
     """
+
+
+@frontend.route('/project')
+def project():
+    return render_template('campaign-list.html')

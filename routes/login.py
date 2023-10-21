@@ -3,7 +3,7 @@
 """Handles User Authentication and login"""
 
 from flask import redirect, render_template, flash, url_for, request
-from flask_login import login_user, current_user, login_required
+from flask_login import login_user, current_user, login_required, logout_user
 from models.user import User
 from forms.login import LoginForm
 from routes import frontend
@@ -14,7 +14,7 @@ from models.project import Project
 @frontend.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for(home))
+        return redirect(url_for('frontend.home'))
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -24,7 +24,6 @@ def login():
         if '@' in username_or_email:
             user_query = {'email': username_or_email}
             user = User.find_obj_by(**user_query)
-
         else:
             user = User.find_obj_by(username=username_or_email)
         if user:
@@ -36,21 +35,25 @@ def login():
                     flash('You have been logged in', 'success')
                     if next_page:
                         return redirect(next_page)
-                    return redirect('dashboard')
+                    return redirect(url_for('frontend.dashboard'))
                 else:
                     flash('Login Unsuccessful. Please Check your username\
                         and password', 'danger')
             else:
-                flash('You need to verify your account before you can log in'\
-                    'danger')
+                flash('You need to verify your account before you can log in', 'danger')
         else:
             flash('Login Unsuccessful. Please Check your username\
                         and password', 'danger')
-    return render_template('signin.html')
+    return render_template('login.html', form=form)
 
 
 @frontend.route('/dashboard')
-# @login_required
+@login_required
 def dashboard():
-    projects = Project.all()
-    return render_template('dashboard.html', projects=projects)
+    return render_template('dashboard.html')
+
+
+@frontend.route('/logout')
+@login_required
+def logout():
+    logout_user()

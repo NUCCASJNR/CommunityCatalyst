@@ -61,13 +61,12 @@
       
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a  class="active" href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="campaign-list.html">List of Campaign</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="#">/</a></li>
-          <li><a href="contact.html">Register</a></li>
+          <li><a href="{{ url_for('frontend.home') }}">Home</a></li>
+          <li><a  class="active" href="{{ url_for('frontend.about') }}">About</a></li>
+          <li><a href="{{ url_for('frontend.contact') }}">Contact</a></li>
+          <li><a href="{{ url_for('frontend.project') }}">List of Campaign</a></li>
+          <li><a href="{{ url_for('frontend.login') }}">Login</a></li>
+          <li><a href="{{ url_for('frontend.signup') }}">Register</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
