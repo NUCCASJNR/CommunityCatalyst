@@ -71,7 +71,7 @@ def upload_image():
 
 @frontend.route('/')
 def home():
-    return render_template('../templates/index.html')
+    return render_template('index.html')
 
 
 @frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])

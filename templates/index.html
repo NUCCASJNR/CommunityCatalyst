@@ -513,7 +513,7 @@
                 <div class="probootstrap-modal-figure" style="background-image: url(static/img/modal_bg.jpg);"></div>
                 <div class="probootstrap-modal-content">
                   <form method="POST" action="/signup">
-                    {{ signupform.csrf_token }}
+                    {{ signupform.hidden_tag() }}
                     <div class="form-group">
                       {{ signupform.first_name.label }}
                       {{ signupform.first_name(class="form-control", placeholder="First Name") }}

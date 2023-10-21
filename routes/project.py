@@ -5,10 +5,10 @@ Handles All related project stuffs
 """
 
 from forms.project import ProjectForm
-from frontend import route
 from routes.common import upload_image
 from models.project import Project
 from flask import flash
+
 
 @frontend.route('/create-project', methods=['GET', 'POST'])
 def create_project():
@@ -31,4 +31,3 @@ def create_project():
         )
         project.save()
         flash('Project created successfully', 'success')
-        
