@@ -5,19 +5,23 @@ Handles All related project stuffs
 """
 
 from forms.project import ProjectForm
-from routes.common import upload_image
+from routes import frontend
+from routes.utils import upload_image
 from models.project import Project
 from flask import flash
+from flask_login import login_required
 
 
 @frontend.route('/create-project', methods=['GET', 'POST'])
+@login_required
 def create_project():
     form = ProjectForm()
     if form.validate_on_submit():
         project_image = form.project_picture.data
         if project_image:
             file_path = upload_image()
-        file_path = ''
+        else:
+            file_path = ''
         project = Project(
             title=form.title.data,
             description=form.description.data,
@@ -31,3 +35,11 @@ def create_project():
         )
         project.save()
         flash('Project created successfully', 'success')
+
+
+@frontend.route('/update_project/<user_id>/<id>', methods=['PUT'])
+@login_required
+def update_project(user_id, id):
+    """
+    Updates a project using the id provided
+    """
