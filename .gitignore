@@ -2,8 +2,6 @@ __pycache__
 api/__pycache__
 api/v1/__pycache__
 communitycatalyst
-frontend/node_modules
-users.json
 models/__pycache__
 routes/__pycache__
 .idea
