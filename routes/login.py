@@ -53,4 +53,4 @@ def login():
 # @login_required
 def dashboard():
     projects = Project.all()
-    return render_template('../templates/dashboard.html', projects=projects)
+    return render_template('dashboard.html', projects=projects)
