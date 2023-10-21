@@ -4,19 +4,11 @@
 Users table
 """
 from models.base_model import BaseModel, db
-from uuid import uuid4
 import bcrypt
-
-def generate_verification_code() -> str:
-    """
-    Generates Auth token
-    :return:
-    """
-    token = str(uuid4())
-    return token
+from flask_login import UserMixin
 
 
-class User(BaseModel):
+class User(BaseModel, db.Model, UserMixin):
     """
     User's Table
     Args:
@@ -53,3 +45,10 @@ class User(BaseModel):
     def check_password_hash(password_to_check, password_hash):
         pwd_byte = bytes(password_to_check, encoding='utf-8')
         return bcrypt.checkpw(pwd_byte, password_hash)
+    #
+    # @property
+    # def is_active(self):
+    #     return True
+    #
+    # def get_id(self):
+    #     return str(self.id)

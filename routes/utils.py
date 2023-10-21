@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 import os
 # from routes.verify import verify
 
+
 def send_verification_email(user):
     """
     Sends a verification email to a user with a verification code
@@ -72,7 +73,7 @@ def upload_image():
 
 @frontend.route('/')
 def home():
-    return render_template('dashboard.html')
+    return render_template('index.html')
 
 
 @frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])
@@ -82,7 +83,7 @@ def verify(verification_code):
     Verifies a user based on the verification code provided
     """
     if current_user.is_authenticated:
-        return redirect(url_for(home))
+        return redirect(url_for('frontend.home'))
     query = {'verification_code': verification_code}
     user = User.find_obj_by(**query)
     if user:
@@ -91,7 +92,7 @@ def verify(verification_code):
             flash('The verification link has expired,'
                   ' Please signup again to receive a new verification code',
                   'danger')
-            return redirect(url_for(home))
+            return redirect(url_for('frontend.home'))
         user.verified = True
         user.verification_code = None
         login_user(user)
@@ -99,4 +100,14 @@ def verify(verification_code):
               'and you have been logged in, Happy Funding', 'success')
     else:
         flash('Invalid verification code. Please try again', 'danger')
-    return redirect(url_for(home))
+    return redirect(url_for('frontend.home'))
+
+
+@frontend.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@frontend.route('/contact')
+def contact():
+    return render_template('contact.html')

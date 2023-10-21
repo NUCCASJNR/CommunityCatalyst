@@ -5,6 +5,7 @@ from models.user import User
 from routes import frontend
 from routes.utils import send_verification_email
 from wtforms import ValidationError
+from routes.utils import home
 
 
 @frontend.route('/signup', methods=['GET', 'POST'])
@@ -13,7 +14,7 @@ def signup():
     Signup route
     """
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('frontend.home'))
     form = SignupForm()
     print("Before form validation")
     if form.validate_on_submit():
@@ -24,7 +25,7 @@ def signup():
             form.validate_email(form.email)
         except ValidationError as e:
             flash(str(e), 'danger')
-            return render_template('dashboard.html', signupform=form)
+            return render_template('signup.html', form=form)
         print("Username and email validation passed")
         hashed_password = User.hash_password(form.password.data)
         print(hashed_password)
@@ -38,9 +39,8 @@ def signup():
         )
         user.save()
         send_verification_email(user)
-        print("User created:", user)  # Print the user object
-        print("User ID:", user.id)  # Print the user's ID
-        return jsonify({"success": "user created"})
-    return render_template('dashboard.html', signupform=form)
+        flash('Your account has been created. Check your email for verification instructions', 'success')
+        return redirect(url_for('frontend.home'))
+    return render_template('signup.html', form=form)
 
 
