@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Community Catalyst</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="static/new_assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Theme style -->
+    <link href="static/new_assets/css/adminlte.min.css" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-warning">
+        <div class="card-header text-center">
+            <a class="brand-link" href="{{ url_for('frontend.home') }}">
+                <img alt="Logo" src="static/new_assets/img/logo.png" style="margin-bottom: -50px;" width="200">
+            </a>
+        </div>
+        <div class="card-body">
+            <form action="/signup" method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ form.csrf_token }}
+                <div class="input-group mb-3">
+                   {{ form.first_name(class="form-control", placeholder="First Name") }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    {{ form.last_name(class="form-control", placeholder="Last Name") }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+               <div class="input-group mb-3">
+                   {{ form.email(class="form-control", placeholder="Email") }}
+                   <div class="input-group-append">
+                       <div class="input-group-text">
+                           <span class="fas fa-at"></span>
+                       </div>
+                   </div>
+               </div>
+                {% if form.email.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.email.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="input-group mb-3">
+                    {{ form.username(class="form-control", placeholder="Username") }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                 {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.username.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="input-group mb-3">
+                    {{ form.password(class="form-control", placeholder="Password") }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <!--        <div class="input-group mb-3">-->
+                <!--          <select class="form-control">-->
+                <!--            <option>Admin</option>-->
+                <!--            <option>Member</option>-->
+                <!--          </select>-->
+                <!--          <div class="input-group-append">-->
+                <!--            <div class="input-group-text">-->
+                <!--              <span class="fas fa-users"></span>-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <button class="btn btn-block" style="background-color: rgb(240, 60, 2);" type="submit">Sign Up
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+</body>
+{% endblock content %}
