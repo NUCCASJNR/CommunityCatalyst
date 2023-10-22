@@ -19,7 +19,7 @@ Community Catalyst is a crowdfunding platform that connects individuals and orga
 
 Community Catalyst is a web-based platform that empowers community leaders, activists, and organizations to create projects that require funding. These projects can range from local infrastructure improvements to educational initiatives. Users can explore, fund, and even collaborate on these projects.
 
-### Key Features
+### Features
 
 - **Project Creation**: Users can create and launch their projects with descriptions, funding goals, and timelines.
 - **Project Discovery**: Users can explore a wide range of community projects, filter by categories, and find those that resonate with them.
@@ -38,9 +38,34 @@ Before getting started, make sure you have the following prerequisites:
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/NUCCASJNR/CommunityCatalyst.git
-cd community-catalyst
+cd CommunityCatalyst
+```
+2. **Install the requirements file**
+
+```bash
+pip install -r requirements.txt
+```
+3. **Set up the MySql user and database**
+
+```mysql
+cat setup_mysql_dev.sql | sudo mysql
+```
+
+4. **Set The environment variables required**
+
+```bash
+echo 'export COMMUNITY_USER="Community_Catalyst_user"' >> ~/.bashrc
+echo 'export COMMUNITY_DB="Community_Catalyst_db"' >> ~/.bashrc
+echo 'export COMMUNITY_PWD="Community_Catalyst_pwd"' >> ~/.bashrc
+echo 'export COMMUNITY_HOST="localhost"' >> ~/.bashrc
+```
+
+5. **Source the Bashrc File to make the environment variables global**
+
+```bash
+source ~/.bashrc
 ```
