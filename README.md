@@ -127,3 +127,27 @@ source ~/.bashrc
         </ul>
     </li>
 </ul>
+
+<style>
+  /* Style for the tree structure */
+  ul {
+    list-style-type: none;
+  }
+
+  ul ul {
+    margin-left: 1rem;
+  }
+
+  ul li {
+    margin-top: 0.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: red; /* Link color */
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
