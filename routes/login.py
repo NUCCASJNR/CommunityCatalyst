@@ -9,12 +9,12 @@ from forms.login import LoginForm
 from routes import frontend
 from routes.utils import home
 from models.project import Project
-
+from models.contribution import Contribution
 
 @frontend.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('frontend.home'))
+        return redirect(url_for('frontend.dashboard'))
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -28,8 +28,8 @@ def login():
             user = User.find_obj_by(username=username_or_email)
         if user:
             if user.verified:
-                hashed_password = User.hash_password(password)
-                if user and user.check_password_hash(password, hashed_password):
+                ented_password = password.encode('utf-8')
+                if user.check_password_hash(password, user.password.encode('utf-8')):
                     login_user(user)
                     next_page = request.args.get('next')
                     flash('You have been logged in', 'success')
@@ -50,6 +50,8 @@ def login():
 @frontend.route('/dashboard')
 @login_required
 def dashboard():
+    projects = Project.query.order_by(Project.created_at.desc()).filter_by(user=current_user).all()
+    contributions = Contribution.query.order_by(Contribution.created_at.desc()).filter_by(user=current_user).all()
     return render_template('dashboard.html')
 
 
@@ -57,3 +59,4 @@ def dashboard():
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('frontend.home'))

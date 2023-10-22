@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CrowdFunding - Member</title>
+  <title>Community Catalyst - Member</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -46,7 +46,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="index.html">
+          <a class="nav-link" data-widget="fullscreen" href="{{ url_for('frontend.logout') }}">
              <i class="fas fa-sign-out-alt"></i>
           </a>
        </li>
@@ -100,14 +100,14 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="withdraw.html" class="nav-link">
                 <i class="nav-icon fa fa-file-invoice"></i>
                 <p>
                   Withdraw Request
                 </p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="profile.html" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
@@ -180,7 +180,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+      <strong>Copyright &copy; 2023 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.0.4
@@ -212,11 +212,11 @@
    <script src="static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
    <script src="static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
    <script src="static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script>
+  <!-- <script>
       $(function () {
          $("#example1").DataTable();
       });
    </script>
-</body>
+</body> -->
 
 </html>

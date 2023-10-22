@@ -16,17 +16,13 @@ def signup():
     if current_user.is_authenticated:
         return redirect(url_for('frontend.home'))
     form = SignupForm()
-    print("Before form validation")
     if form.validate_on_submit():
-        print("Form validated successfully")
-        print("Form data:", form.data)
         try:
             form.validate_username(form.username)
             form.validate_email(form.email)
         except ValidationError as e:
             flash(str(e), 'danger')
             return render_template('signup.html', form=form)
-        print("Username and email validation passed")
         hashed_password = User.hash_password(form.password.data)
         print(hashed_password)
         user = User(

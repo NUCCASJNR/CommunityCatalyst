@@ -12,7 +12,7 @@ from os import getenv
 from routes import frontend
 from werkzeug.utils import secure_filename
 import os
-# from routes.verify import verify
+from models.project import Project
 
 
 def send_verification_email(user):
@@ -73,7 +73,8 @@ def upload_image():
 
 @frontend.route('/')
 def home():
-    return render_template('index.html')
+    projects = Project.query.order_by(Project.created_at.desc()).all()
+    return render_template('index.html', projects=projects)
 
 
 @frontend.route('/verify/<string:verification_code>', methods=['GET', 'POST'])
