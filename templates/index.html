@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>CrowdFunding</title>
+  <title>Community Catalyst</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,27 +32,27 @@
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i>
-      </div>
-      <div class="social-links d-none d-md-flex align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-    </div>
-  </section>
+<!--  <section id="topbar" class="d-flex align-items-center">-->
+<!--    <div class="container d-flex justify-content-center justify-content-md-between">-->
+<!--&lt;!&ndash;      <div class="contact-info d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>&ndash;&gt;-->
+<!--&lt;!&ndash;        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      <div class="social-links d-none d-md-flex align-items-center">-->
+<!--        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>-->
+<!--        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>-->
+<!--        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>-->
+<!--        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
 
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">CrowdFunding</a></h1>
+        <h1 class="text-light"><a href="index.html">Community Catalyst</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="dashboard.html"><img src="new_assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -95,7 +95,7 @@
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h3>Donate, Fundraise & <span>Volunteer</span></h3>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <p>To want is how pain to a something who something. I followed them as it is and seeks to follow nothing. Darkened other pain relief as. Like that pleasure. We accuse him of being and suffering to be repelled by the tender or Less and less time for the architect.</p>
               <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
             </div>
           </div>
@@ -124,7 +124,8 @@
         <div class="row">
           <div class="col-lg-9 text-center text-lg-left">
             <h3>Rise Your Hand</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p> Do not be angry with the pain in the reprimand in the pleasure he wants to be a hair from the pain in the hope that there is no breeding. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.
+</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
             <a class="cta-btn align-middle" href="#">Donate Now</a>
@@ -138,23 +139,24 @@
       <div class="container">
 
         <div class="row">
-
+          {% for project in projects %}
           <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
+            <div class="box" data-aos="fade-right">+
               <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="static/new_assets/img/3.jpg" width="380"/></center>
+                  <img src="{{ project.project_picure }}" width="380"/></center>
               </div>
-              <h2 style="color:rgb(43, 35, 32);">Separate families my on drawings do oh offended</h2>
+              <h2 style="color:rgb(43, 35, 32);">{{ project.title }}</h2>
               <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 5,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 50,000.00</small></p>
+                <p><strong>Raised:</strong><small class="text-success">{{ project.current_amount }}</small></p>
+                <p><strong>Goal:</strong><small class="text-danger">{{ project.goal_amount}}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Donate Now</a>
               </div>
             </div>
           </div>
+          {% endfor %}
           <div class="col-lg-4 col-md-6">
             <div class="box" data-aos="fade-right">
               <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">

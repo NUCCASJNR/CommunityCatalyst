@@ -45,10 +45,3 @@ class User(BaseModel, db.Model, UserMixin):
     def check_password_hash(password_to_check, password_hash):
         pwd_byte = bytes(password_to_check, encoding='utf-8')
         return bcrypt.checkpw(pwd_byte, password_hash)
-    #
-    # @property
-    # def is_active(self):
-    #     return True
-    #
-    # def get_id(self):
-    #     return str(self.id)

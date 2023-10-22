@@ -29,7 +29,7 @@ def create_project():
             current_amount=form.current_amount.data,
             start_date=form.start_date.data,
             end_date=form.end_date.data,
-            profile_picture=file_path,
+            project_picture=file_path,
             category=form.category.data,
             location=form.location.data
         )
