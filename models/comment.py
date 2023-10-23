@@ -7,7 +7,7 @@ from models.base_model import BaseModel, db
 from models.project import User, Project
 
 
-class Comment(BaseModel):
+class Comment(BaseModel, db.Model):
     """Comment class"""
     __tablename__ = 'comments'
     user_id = \
