@@ -11,6 +11,7 @@ from routes.utils import home
 from models.project import Project
 from models.contribution import Contribution
 
+
 @frontend.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     if current_user.is_authenticated:

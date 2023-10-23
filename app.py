@@ -17,9 +17,9 @@ csrf = CSRFProtect(app)
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'frontend.login'
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 bcrypt = Bcrypt(app)
 

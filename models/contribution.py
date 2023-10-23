@@ -6,7 +6,7 @@ from models.base_model import BaseModel, db
 from models.project import User, Project
 
 
-class Contribution(BaseModel):
+class Contribution(BaseModel, db.Model):
     """
     contribution table
     """

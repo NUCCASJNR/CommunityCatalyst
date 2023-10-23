@@ -34,6 +34,15 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+           {% for category, message in messages %}
+               <div class="alert alert-{{ category }} mb-0">
+                   {{ message }}
+               </div>
+           {% endfor %}
+       {% endif %}
+   {% endwith %}
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -150,48 +159,105 @@
             <!-- jquery validation -->
             <div class="card card-success">
               <!-- form start -->
-              <form role="form" id="quickForm">
+              <form method="post" role="form" id="quickForm" action="/create-project">
+                  {{ form.hidden_tag() }}
+                  {{ form.csrf_token }}
                 <div class="card-body">
                   <div class="row">
                   <div class="col-md-4">
                   <div class="form-group">
-                    <label>Category</label>
-                    <input type="text" name="lname" class="form-control" placeholder="Category">
-                  </div></div>
-                  <div class="col-md-4">
-                  <div class="form-group">
-                    <label>Campaign Name</label>
-                    <input type="text" name="fname" class="form-control" placeholder="Campaign Name">
-                  </div></div>
-                  <div class="col-md-4">
-                  <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" name="mname" class="form-control" placeholder="Description">
+                    {{ form.campaign_name.label }}
+                    {% if form.campaign_name.errors %}
+                        {{ form.campaign_name(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.campaign_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.campaign_name(class="form-control form-control") }}
+                    {% endif %}
                   </div>
                   </div>
                   <div class="col-md-4">
                   <div class="form-group">
-                    <label>Target Amount</label>
-                    <input type="number" name="email" class="form-control" placeholder="ex. 20,000.00">
+                    {{ form.category.label }}
+                    {% if form.category.errors %}
+                        {{ form.category(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.category.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.category(class="form-control form-control") }}
+                    {% endif %}
+                  </div></div>
+                  <div class="col-md-4">
+                  <div class="form-group">
+                   {{ form.description.label }}
+                    {% if form.description.errors %}
+                        {{ form.description(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.description.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.description(class="form-control form-control") }}
+                    {% endif %}
+                  </div>
+                  </div>
+                  <div class="col-md-4">
+                  <div class="form-group">
+                    {{ form.target_amount.label }}
+                    {% if form.target_amount.errors %}
+                        {{ form.target_amount(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.target_amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.target_amount(class="form-control form-control") }}
+                    {% endif %}
                   </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Deadline</label>
-                      <input type="date" name="profile" class="form-control">
+                      {{ form.deadline.label }}
+                    {% if form.deadline.errors %}
+                        {{ form.deadline(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.deadline.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.deadline(class="form-control form-control") }}
+                    {% endif %}
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Banner </label>
-                      <input type="file" name="identity" class="form-control">
+                     {{ form.picture.label }}
+                    {% if form.picture.errors %}
+                        {{ form.picture(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.picture.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.picture(class="form-control form-control") }}
+                    {% endif %}
                     </div>
                   </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  {{ form.submit(class="btn btn-primary") }}
                 </div>
               </form>
             </div>
