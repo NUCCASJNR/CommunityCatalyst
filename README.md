@@ -10,7 +10,7 @@ Community Catalyst is a crowdfunding platform that connects individuals and orga
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
+- [Tables Setup and migration](#tables setup and migration)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
