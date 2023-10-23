@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>CrowdFunding</title>
+  <title>community catalyst</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -36,15 +36,15 @@
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:info@community-catalyst.codewithalareef.tech">info@community-catalyst.codewithalareef.tech</a></i>
+        <!-- <i class="bi bi-phone d-flex align-items-center ms-4"><span>+6397867867565</span></i> -->
       </div>
-      <div class="social-links d-none d-md-flex align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+      <!-- <div class="social-links d-none d-md-flex align-items-center"> -->
+        <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -53,20 +53,20 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">CrowdFunding</a></h1>
+        <h1 class="text-light"><a href="{{ url_for('frontend.home') }}">Community Catalyst</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="dashboard.html"><img src="new_assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a  class="active" href="contact.html">Contact</a></li>
-          <li><a href="campaign-list.html">List of Campaign</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="#">/</a></li>
-          <li><a href="contact.html">Register</a></li>
+          <li><a href="{{ url_for('frontend.home') }}">Home</a></li>
+          <li><a href="{{ url_for('frontend.about') }}">About</a></li>
+          <li><a  class="active" href="{{ url_for('frontend.contact')}}">Contact</a></li>
+          <li><a href="{{ url_for('frontend.project') }}">List of Campaign</a></li>
+          <li><a href="{{ url_for('frontend.login') }}">Login</a></li>
+          <li><a href="{{ url_for('frontend.home') }}">/</a></li>
+          <li><a href="{{ url_for('frontend.signup') }}">Register</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -82,7 +82,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Contact</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ url_for('frontend.home') }}">Home</a></li>
             <li>Contact</li>
           </ol>
         </div>
