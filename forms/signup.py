@@ -21,7 +21,7 @@ class SignupForm(FlaskForm):
                                     render_kw={'placeholder': 'Confirm Password'})
     submit = SubmitField('Sign Up')
 
-    def validate_username(self, username: str):
+    def validate_username(self, username):
         """
                Validates user's username by checking if it exists
                 in the users table before
@@ -29,11 +29,11 @@ class SignupForm(FlaskForm):
                :return:
                    Error if it exists
                """
-        user = User.find_obj_by(username=username)
+        user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('This username already exists')
 
-    def validate_email(self, email: str):
+    def validate_email(self, email):
         """
         Validates user's email by checking if it exists
          in the users table before
@@ -41,6 +41,6 @@ class SignupForm(FlaskForm):
         :return:
             Error if it exists
         """
-        email = User.find_obj_by(email=email)
-        if email:
+        user = User.query.filter_by(email=email.data).first()
+        if user:
             raise ValidationError('This email already exists')

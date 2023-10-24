@@ -6,15 +6,13 @@ Handles All related project stuffs
 import os
 import secrets
 
-from sqlalchemy.sql.functions import current_user
-
 from config import db, app
 from forms.project import ProjectForm
 from routes import frontend
 from routes.utils import upload_image
 from models.project import Project
 from flask import flash, redirect, render_template, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from PIL import Image
 
 
@@ -62,7 +60,7 @@ def create_project():
         project.save()
         flash('Project created successfully', 'success')
         # return render_template('create_project.html', form=form)
-        return redirect(url_for('create_project'))
+        return redirect(url_for('frontend.create_project'))
     return render_template('create_project.html', form=form)
 
 

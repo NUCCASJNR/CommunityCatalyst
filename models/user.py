@@ -39,6 +39,9 @@ class User(BaseModel, db.Model, UserMixin):
     projects = db.relationship('Project', back_populates='user')
     contributions = db.relationship('Contribution', back_populates='user')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     @staticmethod
     def hash_password(password):
         pwd_byte = bytes(password, encoding='utf-8')
