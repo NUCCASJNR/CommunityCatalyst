@@ -9,7 +9,6 @@ import secrets
 from config import db, app
 from forms.project import ProjectForm
 from routes import frontend
-from routes.utils import upload_image
 from models.project import Project
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, current_user
@@ -20,7 +19,7 @@ def save_picture_project(project_picture):
     random_hex = secrets.token_hex(8)
     _, file_extension = os.path.splitext(project_picture.filename)
     picture_filename = random_hex + file_extension
-    picture_path = os.path.join(app.root_path, 'static/img/blog_pics', picture_filename)
+    picture_path = os.path.join(app.root_path, 'static/img/project_pics', picture_filename)
     output_size = (960, 540)
     i = Image.open(project_picture)
     i.thumbnail(output_size)
