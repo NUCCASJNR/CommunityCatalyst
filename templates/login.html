@@ -24,20 +24,51 @@
                <form action="/login" method="post">
                   {{ form.csrf_token }}
                   <div class="input-group mb-3">
-                    {{ form.username_or_email(class="form-control", placeholder="Username Or Email") }}
-                     <div class="input-group-append">
+                      {% if form.username_or_email.errors %}
+                            {{ form.username_or_email(class="form-control fc is-invalid") }}
+                          <div class="input-group-append">
                         <div class="input-group-text">
                            <span class="fas fa-user"></span>
                         </div>
                      </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.username_or_email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username_or_email(class="form-control fc") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user"></span>
+                        </div>
+                     </div>
+                        {% endif %}
+{#                    {{ form.username_or_email(class="form-control", placeholder="Username Or Email") }}#}
                   </div>
                   <div class="input-group mb-3">
-                     {{ form.password(class="form-control", placeholder="Password") }}
-                     <div class="input-group-append">
+{#                     {{ form.password(class="form-control", placeholder="Password") }}#}
+                      {% if form.password.errors %}
+                            {{ form.password(class="form-control fc is-invalid") }}
+                           <div class="input-group-append">
                         <div class="input-group-text">
                            <span class="fas fa-lock"></span>
                         </div>
                      </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control fc") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-lock"></span>
+                        </div>
+                     </div>
+                        {% endif %}
+
                   </div>
 <!--                  <div class="input-group mb-3">-->
 <!--                        <select class="form-control">-->

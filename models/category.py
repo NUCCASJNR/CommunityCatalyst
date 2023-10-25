@@ -4,7 +4,7 @@
 from models.base_model import BaseModel, db
 
 
-class Category(BaseModel):
+class Category(BaseModel, db.Model):
     """Category class"""
     __tablename__ = 'categories'
     name = db.Column(db.String(126), nullable=False)

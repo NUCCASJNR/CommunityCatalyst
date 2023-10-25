@@ -141,15 +141,18 @@
         <div class="row">
           {% for project in projects %}
           <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">+
+            <div class="box" data-aos="fade-right">
               <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="{{ project.project_picure }}" width="380"/></center>
+                  <img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" />
+                </center>
               </div>
-              <h2 style="color:rgb(43, 35, 32);">{{ project.title }}</h2>
+
+              <h2 style="color:rgb(43, 35, 32);">{{ project.campaign_name }}</h2>
               <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success">{{ project.current_amount }}</small></p>
-                <p><strong>Goal:</strong><small class="text-danger">{{ project.goal_amount}}</small></p>
+
+                <p><strong>Raised: #</strong><small class="text-success">{{ project.current_amount }}</small></p>
+                <p><strong>Goal: #</strong><small class="text-danger">{{ project.target_amount}}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Donate Now</a>
@@ -157,44 +160,7 @@
             </div>
           </div>
           {% endfor %}
-          <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                <center>
-                  <img src="static/new_assets/img/1.jpg" width="380"/></center>
-              </div>
-              <h2 style="color:rgb(43, 35, 32);">Must you with him from him her were more</h2>
-              
-              <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 9,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 90,000.00</small></p>
-              </div>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                <center>
-                  <img src="static/new_assets/img/2.jpg" width="380"/></center>
-              </div>
-              <h2 style="color:rgb(43, 35, 32);">On it differed repeated wandered required in</h2>
-              
-              <div class="float-left">
-                <p><strong>Raised:</strong><small class="text-success"> Php 10,000.00</small></p>
-                <p><strong>Goal:</strong><small class="text-danger"> Php 100,000.00</small></p>
-              </div>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Donate Now</a>
-              </div>
-            </div>
-          </div>
-
-
         </div>
-
       </div>
     </section>
 

@@ -5,7 +5,7 @@ BaseModel class that other class inherits from
 """
 
 
-from uuid import uuid4
+import uuid
 from datetime import datetime
 
 from sqlalchemy.orm.exc import NoResultFound
@@ -32,9 +32,10 @@ class BaseModel(db.Model):
         Initialization method
         """
         super().__init__(*args, **kwargs)
-        self.id = str(uuid4())
+        self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+
 
     def save(self):
         """
