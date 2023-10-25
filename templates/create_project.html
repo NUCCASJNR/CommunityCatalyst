@@ -159,7 +159,7 @@
             <!-- jquery validation -->
             <div class="card card-success">
               <!-- form start -->
-              <form method="post" role="form" id="quickForm" action="/create-project">
+              <form method="post" role="form" id="quickForm" action="/create-project" enctype="multipart/form-data">
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
                 <div class="card-body">

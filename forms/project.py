@@ -16,7 +16,7 @@ class ProjectForm(FlaskForm):
     target_amount = DecimalField('Goal Amount', validators=[DataRequired()])
     start_date = DateField('Start Date', format='%Y-%m-%d')
     deadline = DateField('End Date', format='%Y-%m-%d')
-    picture = FileField('Project Picture', validators=[FileAllowed(['jpg, png, jpeg'])])
+    picture = FileField('Project Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     category = StringField('Category', validators=[DataRequired(), Length(max=126)])
     # location = StringField('Location', validators=[Length(max=126)])
     submit = SubmitField('Submit')
