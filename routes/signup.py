@@ -14,7 +14,7 @@ def signup():
     Signup route
     """
     if current_user.is_authenticated:
-        return redirect(url_for('frontend.home'))
+        return redirect(url_for('frontend.dashboard'))
     form = SignupForm()
     if form.validate_on_submit():
         try:
