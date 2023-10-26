@@ -12,7 +12,7 @@ class Contribution(BaseModel, db.Model):
     """
     __tablename__ = 'contributions'
     user_id = \
-        db.Column(db.String(126), db.ForeignKey('users.id'), nullable=False)
+        db.Column(db.String(126), db.ForeignKey('users.id'), nullable=True)
     project_id = \
         db.Column(db.String(126), db.ForeignKey('projects.id'), nullable=False)
     amount = db.Column(db.Numeric(precision=10, scale=2))

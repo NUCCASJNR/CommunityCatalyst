@@ -141,78 +141,79 @@
                </div>
             </div>
          </div>
+           {% for pic in pictures %}
          <section class="content">
             <div class="container-fluid">
                <div class="card card-info elevation-2">
                   <br>
                   <div class="col-md-12 table-responsive">
-                     
                   <div class="filter-container p-0 row">
                     <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                       <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 1 - white">
-                        <img src="static/member_assets/img/3.jpg" class="img-fluid mb-2" alt="white sample"/>
+                        <img src="{{ url_for('static', filename='img/project_pics/{}'.format(pic)) }}" width="380" />
                       </a>
                     </div>
-                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 2 - black">
-                        <img src="static/member_assets/img/4.jpg" class="img-fluid mb-2" alt="black sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 3 - red">
-                        <img src="static/member_assets/img/5.jpg" class="img-fluid mb-2" alt="red sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 4 - red">
-                        <img src="static/member_assets/img/6.jpg" class="img-fluid mb-2" alt="red sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 5 - black">
-                        <img src="static/member_assets/img/2.jpg" class="img-fluid mb-2" alt="black sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 6 - white">
-                        <img src="static/member_assets/img/1.jpg" class="img-fluid mb-2" alt="white sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 7 - white">
-                        <img src="static/member_assets/img/2.jpg" class="img-fluid mb-2" alt="white sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 8 - black">
-                        <img src="static/member_assets/img/3.jpg" class="img-fluid mb-2" alt="black sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 9 - red">
-                        <img src="static/member_assets/img/8.jpg" class="img-fluid mb-2" alt="red sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 10 - white">
-                        <img src="static/member_assets/img/7.jpg" class="img-fluid mb-2" alt="white sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 11 - white">
-                        <img src="static/member_assets/img/4.jpg" class="img-fluid mb-2" alt="white sample"/>
-                      </a>
-                    </div>
-                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 12 - black">
-                        <img src="static/member_assets/img/5.jpg" class="img-fluid mb-2" alt="black sample"/>
-                      </a>
-                    </div>
+<!--                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 2 - black">-->
+<!--                        <img src="static/member_assets/img/4.jpg" class="img-fluid mb-2" alt="black sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 3 - red">-->
+<!--                        <img src="static/member_assets/img/5.jpg" class="img-fluid mb-2" alt="red sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 4 - red">-->
+<!--                        <img src="static/member_assets/img/6.jpg" class="img-fluid mb-2" alt="red sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 5 - black">-->
+<!--                        <img src="static/member_assets/img/2.jpg" class="img-fluid mb-2" alt="black sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 6 - white">-->
+<!--                        <img src="static/member_assets/img/1.jpg" class="img-fluid mb-2" alt="white sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 7 - white">-->
+<!--                        <img src="static/member_assets/img/2.jpg" class="img-fluid mb-2" alt="white sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 8 - black">-->
+<!--                        <img src="static/member_assets/img/3.jpg" class="img-fluid mb-2" alt="black sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 9 - red">-->
+<!--                        <img src="static/member_assets/img/8.jpg" class="img-fluid mb-2" alt="red sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 10 - white">-->
+<!--                        <img src="static/member_assets/img/7.jpg" class="img-fluid mb-2" alt="white sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 11 - white">-->
+<!--                        <img src="static/member_assets/img/4.jpg" class="img-fluid mb-2" alt="white sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">-->
+<!--                      <a href="add-gallery.html" data-toggle="lightbox" data-title="sample 12 - black">-->
+<!--                        <img src="static/member_assets/img/5.jpg" class="img-fluid mb-2" alt="black sample"/>-->
+<!--                      </a>-->
+<!--                    </div>-->
                   </div>
                   </div>
                </div>
             </div>
          </section>
+           {% endfor %}
       </div>
    </div>
    <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">

@@ -85,7 +85,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="gallery.html" class="nav-link">
+              <a href="{{ url_for('frontend.user_gallery')}}" class="nav-link">
                 <i class="nav-icon fa fa-images"></i>
                 <p>
                  Gallery
@@ -135,12 +135,13 @@
                         <li class="breadcrumb-item active">List</li>
                      </ol>
                   </div>
-                  <a class="btn btn-sm elevation-2" href="create_project.html" style="margin-top: 20px;margin-left: 10px;background-color: #05445E;color: #ddd;"><i
+                  <a class="btn btn-sm elevation-2" href="{{ url_for('frontend.create_project') }}" style="margin-top: 20px;margin-left: 10px;background-color: #05445E;color: #ddd;"><i
                         class="fa fa-plus"></i>
                      Add New</a>
                </div>
             </div>
          </div>
+          {% for project in user_projects %}
          <section class="content">
             <div class="container-fluid">
                <div class="card card-info elevation-2">
@@ -155,38 +156,23 @@
                               <th>Target Amount</th>
                               <th>Deadline</th>
                               <th>Banner</th>
-                              <th>Status</th>
+<!--                              <th>Status</th>-->
                               <th>Action</th>
                            </tr>
                         </thead>
                         <tbody>
                           <tr>
-                           <td>Category 1</td>
-                           <td>Campaign 1</td>
-                           <td>Description</td>
-                           <td>Php 50,000.00</td>
-                           <td>Oct 30, 2021</td>
-                             <td><img src="static/member_assets/img/logo.png" width="100" alt="User Image"></td>
-                             <td><span class="badge bg-success">approve</span></td>
+                           <td>{{ project.category }}</td>
+                           <td>{{ project.campaign_name }}</td>
+                           <td>{{ project.description }}</td>
+                           <td>{{ project.target_amount }}</td>
+                           <td>{{ project.end_date }}</td>
+                             <td><img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" /></td>
+<!--                             <td><span class="badge bg-success">approve</span></td>-->
                              <td class="text-right">
                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
                                       class="fa fa-user-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                      class="fa fa-trash-alt"></i></a>
-                             </td>
-                          </tr>
-                          <tr>
-                           <td>Category 2</td>
-                           <td>Campaign 2</td>
-                           <td>Description</td>
-                           <td>Php 100,000.00</td>
-                           <td>Nov 30, 2021</td>
-                             <td><img src="static/member_assets/img/logo.png" width="100" alt="User Image"></td>
-                             <td><span class="badge bg-success">approve</span></td>
-                             <td class="text-right">
-                                <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                      class="fa fa-user-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
+                                <a class="btn btn-sm btn-danger" href="{{ url_for('frontend.delete_user_project', id=project.id) }}" data-toggle="modal" data-target="#delete"><i
                                       class="fa fa-trash-alt"></i></a>
                              </td>
                           </tr>
@@ -196,6 +182,7 @@
                </div>
             </div>
          </section>
+          {% endfor %}
       </div>
    </div>
    <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
