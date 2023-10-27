@@ -1,0 +1,22 @@
+<!-- templates/payment.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add your HTML header content here -->
+</head>
+<body>
+    <h1>Make a Payment</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="{{ form.amount.id }}">Amount</label>
+            {{ form.amount(class="form-control") }}
+            {% for error in form.amount.errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</body>
+</html>
