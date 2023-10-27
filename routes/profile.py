@@ -1,4 +1,4 @@
-from flask import flash, redirect, url_for, request
+from flask import flash, redirect, url_for, request, render_template
 
 from config import db
 from forms.profile import ProfileForm
@@ -38,3 +38,5 @@ def update_profile():
         form.email.data = current_user.email
         form.address.data = current_user.address
         form.username.data = current_user.username
+    image_file = url_for('static', filename='img/profile_pics/{}'.format(current_user.picture))
+    return render_template('profile.html', form=form, image_file=image_file)

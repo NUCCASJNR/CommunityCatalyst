@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, SelectField, DateField, PasswordField
+from wtforms import StringField, SelectField, DateField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -21,3 +21,4 @@ class ProfileForm(FlaskForm):
                              render_kw={'placeholder': "Must be at least 8 characters"})
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
                                      render_kw={'placeholder': 'Confirm Password'})
+    submit = SubmitField('Update')

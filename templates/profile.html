@@ -158,7 +158,9 @@
                               </div>
                            </div>
                            <div class="col-md-9">
-                               <form>
+                               <form action="" method="POST" enctype="multipart/form-data">
+                                   {{ form.hidden_tag() }}
+                                   {{ form.csrf_token }}
                               <div class="card-header">
                                  <span class="fa fa-user"> Profile Information</span>
                               </div>
@@ -166,52 +168,58 @@
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">First Name</label>
-                                       <input type="email" class="form-control" placeholder="first name">
+                                        {{ form.first_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Middle Name</label>
-                                       <input type="email" class="form-control" placeholder="middle name">
+                                        {{ form.middle_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Last Name</label>
-                                       <input type="email" class="form-control" placeholder="last name">
+                                        {{ form.last_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label>Gender</label>
-                                       <select class="form-control">
-                                          <option>Male</option>
-                                          <option>Female</option>
-                                       </select>
+                                       {{ form.gender(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Birthday</label>
-                                       <input type="date" class="form-control" placeholder="last name">
+                                        {{ form.birthday(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Contact</label>
-                                       <input type="number" class="form-control" placeholder="contact">
+                                        {{ form.contact(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Email</label>
-                                       <input type="email" class="form-control" placeholder="email">
+                                       {% if form.email.errors %}
+                                           {{ form.email(class="form-control form-control is-invalid") }}
+                                           <div class="invalid-feedback">
+                                               {% for error in form.email.errors %}
+                                                   <span>{{ error }}</span>
+                                               {% endfor %}
+                                           </div>
+                                       {% else %}
+                                           {{ form.email(class="form-control form-control") }}
+                                       {% endif %}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Address</label>
-                                       <input type="email" class="form-control" placeholder="address">
+                                        {{ form.address(class="form-control form-control") }}
                                     </div>
                                  </div>
                                  <div class="col-md-12">
@@ -222,7 +230,7 @@
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Username</label>
-                                       <input type="email" class="form-control" placeholder="username">
+                                       {{ form.username(class="form-control form-control") }}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
@@ -232,6 +240,7 @@
                                     </div>
                                  </div>
                               </div>
+                               {{ form.submit(class="btn btn-primary") }}
                                </form>
                            </div>
                         </div>

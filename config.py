@@ -14,7 +14,7 @@ database = getenv("COMMUNITY_DB")
 password = getenv("COMMUNITY_PWD")
 host = getenv("COMMUNITY_HOST")
 
-app = Flask(__name__, static_folder='templates/static')
+app = Flask(__name__)
 # csrf = CSRFProtect(app)
 # CORS(app, resources={r"/*": {"origins": "http://localhost:5000"}})
 
