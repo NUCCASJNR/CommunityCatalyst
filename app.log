@@ -1,30 +1,31 @@
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 388-215-013
-ERROR:root:Error creating payment link
-INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.last_name AS users_last_name, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
-FROM users 
-WHERE users.id = %s
-INFO:sqlalchemy.engine.Engine:[generated in 0.00030s] ('6c3ac4c7-0cfd-4cba-a3a6-9f5829f5f1a4',)
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "POST /pay/c68877b2-a897-4f5b-8b3b-6f12ced227e8 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/css/adminlte.min.css HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/js/adminlte.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/jquery-validation/jquery.validate.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/plugins/jquery-validation/additional-methods.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/img/logo.png HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/dist/js/adminlte.min.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /pay/static/member_assets/dist/js/demo.js HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [26/Oct/2023 14:49:06] "GET /favicon.ico HTTP/1.1" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.paystack.co:443
+ERROR:root:Network error creating payment link: HTTPSConnectionPool(host='api.paystack.co', port=443): Max retries exceeded with url: /transaction/initialize (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb517628820>: Failed to resolve 'api.paystack.co' ([Errno -3] Temporary failure in name resolution)"))
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "[32mPOST /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /pay/Network%20error%20creating%20payment%20link:%20HTTPSConnectionPool(host='api.paystack.co',%20port=443):%20Max%20retries%20exceeded%20with%20url:%20/transaction/initialize%20(Caused%20by%20NameResolutionError("<urllib3.connection.HTTPSConnection%20object%20at%200x7fb517628820>:%20Failed%20to%20resolve%20'api.paystack.co'%20([Errno%20-3]%20Temporary%20failure%20in%20name%20resolution)")) HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
