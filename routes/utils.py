@@ -3,12 +3,14 @@
 different parts of The Flask application. These functions are shared and
 imported by other modules, such as routes/signup.py and routes/verify.py,
 to avoid circular import issues and promote code reusability."""
-
+from PIL import Image
 from flask import render_template, url_for, request
 import secrets
 from datetime import datetime, timedelta
 import requests
 from os import getenv
+
+from config import app
 from routes import frontend
 from werkzeug.utils import secure_filename
 import os
@@ -46,6 +48,21 @@ def send_verification_email(user):
     if response.status_code == 200:
         print('Email successfully sent to user')
     print(f'Error occurred with error code: {response.status_code}')
+
+
+def save_picture(project_picture, path):
+    random_hex = secrets.token_hex(8)
+    _, file_extension = os.path.splitext(project_picture.filename)
+    picture_filename = random_hex + file_extension
+    picture_path = os.path.join(app.root_path, f'templates/static/img/{path}', picture_filename)
+    print("Picture Filename:", picture_filename)
+    print("Picture Path:", picture_path)
+
+    output_size = (960, 540)
+    i = Image.open(project_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_filename
 
 
 def upload_image():

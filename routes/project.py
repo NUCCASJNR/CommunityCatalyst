@@ -13,21 +13,7 @@ from models.project import Project
 from flask import flash, redirect, render_template, url_for, abort
 from flask_login import login_required, current_user
 from PIL import Image
-
-
-def save_picture_project(project_picture):
-    random_hex = secrets.token_hex(8)
-    _, file_extension = os.path.splitext(project_picture.filename)
-    picture_filename = random_hex + file_extension
-    picture_path = os.path.join(app.root_path, 'templates/static/img/project_pics', picture_filename)
-    print("Picture Filename:", picture_filename)
-    print("Picture Path:", picture_path)
-
-    output_size = (960, 540)
-    i = Image.open(project_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-    return picture_filename
+from routes.utils import save_picture
 
 
 @frontend.route('/create-project', methods=['GET', 'POST'])
@@ -38,7 +24,7 @@ def create_project():
         if form.category.data == '':
             form.category.data = 'Miscellaneous'
         if form.picture.data:
-            picture_filename = save_picture_project(form.picture.data)
+            picture_filename = save_picture(form.picture.data, 'project_pics')
         else:
             picture_filename = 'templates/static/img/project_pics/logo.png'
         project = Project(campaign_name=form.campaign_name.data,
@@ -85,4 +71,3 @@ def user_gallery():
     # Query pictures that belong to the current user
     pictures = Project.query.filter_by(user=current_user).order_by(Project.project_picture.desc()).all()
     return render_template('gallery.html', pictures=pictures)
-
