@@ -54,7 +54,7 @@ def save_picture(project_picture, path):
     random_hex = secrets.token_hex(8)
     _, file_extension = os.path.splitext(project_picture.filename)
     picture_filename = random_hex + file_extension
-    picture_path = os.path.join(app.root_path, f'templates/static/img/{path}', picture_filename)
+    picture_path = os.path.join(app.root_path, f'static/img/{path}', picture_filename)
     print("Picture Filename:", picture_filename)
     print("Picture Path:", picture_path)
 

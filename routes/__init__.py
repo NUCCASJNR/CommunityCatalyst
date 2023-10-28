@@ -7,3 +7,4 @@ from routes.signup import *
 from routes.utils import *
 from routes.login import *
 from routes.project import *
+from routes.profile import *

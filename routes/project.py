@@ -36,7 +36,6 @@ def create_project():
                           user=current_user)
         project.save()
         flash('Project created successfully', 'success')
-        # return render_template('create_project.html', form=form)
         return redirect(url_for('frontend.create_project'))
     return render_template('create_project.html', form=form)
 
