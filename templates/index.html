@@ -59,6 +59,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
+          {% if current_user.is_authenticated %}
+          <li><a class="active" href="{{ url_for('frontend.create_project') }}">Add Campaign</a></li>
+          <li><a class="active" href="{{ url_for('frontend.dashboard') }}">Dashboard</a></li>
+          <li><a class="active" href="{{ url_for('frontend.logout') }}">Logout</a></li>
+          {% else %}
           <li><a class="active" href="{{ url_for('frontend.home') }}">Home</a></li>
           <li><a href="{{ url_for('frontend.about') }}">About</a></li>
           <li><a href="{{ url_for('frontend.contact') }}">Contact</a></li>
@@ -66,6 +71,7 @@
           <li><a href="{{ url_for('frontend.login') }}">Login</a></li>
           <li><a href="#">/</a></li>
           <li><a href="{{ url_for('frontend.signup') }}">Register</a></li>
+            {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -118,22 +124,22 @@
 
   <main id="main">
 
-    <section id="cta" class="cta">
-      <div class="container">
+<!--    <section id="cta" class="cta">-->
+<!--      <div class="container">-->
 
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-left">
-            <h3>Rise Your Hand</h3>
-            <p> Do not be angry with the pain in the reprimand in the pleasure he wants to be a hair from the pain in the hope that there is no breeding. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.
-</p>
-          </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Donate Now</a>
-          </div>
-        </div>
+<!--        <div class="row">-->
+<!--          <div class="col-lg-9 text-center text-lg-left">-->
+<!--            <h3>Rise Your Hand</h3>-->
+<!--            <p> Do not be angry with the pain in the reprimand in the pleasure he wants to be a hair from the pain in the hope that there is no breeding. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.-->
+<!--</p>-->
+<!--          </div>-->
+<!--          <div class="col-lg-3 cta-btn-container text-center">-->
+<!--            <a class="cta-btn align-middle" href="#">Donate Now</a>-->
+<!--          </div>-->
+<!--        </div>-->
 
-      </div>
-    </section>
+<!--      </div>-->
+<!--    </section>-->
     <section id="pricing" class="pricing">
       <div class="container">
         <div class="row">
@@ -153,7 +159,7 @@
                 <p><strong>Goal: #</strong><small class="text-danger">{{ project.target_amount}}</small></p>
               </div>
               <div class="btn-wrap">
-                <a href="https://paystack.com/pay/zp9vahq-0s" class="btn btn-primary">Donate Now</a>
+                <a href="{{ url_for('frontend.initiate_payment', project_id=project.id )}}" class="btn btn-primary">Donate Now</a>
               </div>
             </div>
           </div>

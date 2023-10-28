@@ -1,0 +1,31 @@
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 388-215-013
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.paystack.co:443
+ERROR:root:Network error creating payment link: HTTPSConnectionPool(host='api.paystack.co', port=443): Max retries exceeded with url: /transaction/initialize (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb517628820>: Failed to resolve 'api.paystack.co' ([Errno -3] Temporary failure in name resolution)"))
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "[32mPOST /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /pay/Network%20error%20creating%20payment%20link:%20HTTPSConnectionPool(host='api.paystack.co',%20port=443):%20Max%20retries%20exceeded%20with%20url:%20/transaction/initialize%20(Caused%20by%20NameResolutionError("<urllib3.connection.HTTPSConnection%20object%20at%200x7fb517628820>:%20Failed%20to%20resolve%20'api.paystack.co'%20([Errno%20-3]%20Temporary%20failure%20in%20name%20resolution)")) HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
