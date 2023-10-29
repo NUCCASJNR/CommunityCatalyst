@@ -1,31 +1,84 @@
 WARNING:werkzeug: * Debugger is active!
-INFO:werkzeug: * Debugger PIN: 388-215-013
+INFO:werkzeug: * Debugger PIN: 106-614-997
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:17:34] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE projects.id = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00033s] ('9095972d-8ed2-49b0-827d-1612d4dca1a4', 1)
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.paystack.co:443
-ERROR:root:Network error creating payment link: HTTPSConnectionPool(host='api.paystack.co', port=443): Max retries exceeded with url: /transaction/initialize (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb517628820>: Failed to resolve 'api.paystack.co' ([Errno -3] Temporary failure in name resolution)"))
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "[32mPOST /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /pay/Network%20error%20creating%20payment%20link:%20HTTPSConnectionPool(host='api.paystack.co',%20port=443):%20Max%20retries%20exceeded%20with%20url:%20/transaction/initialize%20(Caused%20by%20NameResolutionError("<urllib3.connection.HTTPSConnection%20object%20at%200x7fb517628820>:%20Failed%20to%20resolve%20'api.paystack.co'%20([Errno%20-3]%20Temporary%20failure%20in%20name%20resolution)")) HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:26:42] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:19] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:22] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:23] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:24] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:25] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /pay/0eadb9a6-2869-4bc8-bbc2-feadd1c342fe HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [27/Oct/2023 13:27:26] "GET /favicon.ico HTTP/1.1" 200 -
+DEBUG:urllib3.connectionpool:https://api.paystack.co:443 "POST /transaction/initialize HTTP/1.1" 200 None
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:17:36] "[32mPOST /pay/9095972d-8ed2-49b0-827d-1612d4dca1a4 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:15] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:16] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:16] "[36mGET /static/new_assets/img/1.jpg HTTP/1.1[0m" 304 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[generated in 0.00029s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "GET /static/img/project_pics/templates/static/img/project_pics/logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/img/project_pics/7b947cf22ce9abe0.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/img/project_pics/a085b3c53db88f7d.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/img/project_pics/d1c56a3950a48920.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/img/project_pics/ecef8ff456eb664b.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/boxicons/fonts/boxicons.woff2 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "[36mGET /static/assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:17] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:22] "[36mGET /static/new_assets/img/1.jpg HTTP/1.1[0m" 304 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 17.77s ago] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/img/project_pics/7b947cf22ce9abe0.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "GET /static/img/project_pics/templates/static/img/project_pics/logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/img/project_pics/a085b3c53db88f7d.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/img/project_pics/d1c56a3950a48920.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "[36mGET /static/img/project_pics/ecef8ff456eb664b.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:35] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Oct/2023 17:20:46] "[36mGET /static/new_assets/img/1.jpg HTTP/1.1[0m" 304 -
