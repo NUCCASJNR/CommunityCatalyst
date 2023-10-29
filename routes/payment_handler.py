@@ -49,7 +49,7 @@ def create_payment_link(project_id, amount, user_id, email):
             'email': email,
             'reference': reference,
             'currency': 'NGN',
-            'callback_url': 'https://community-catalyst.codewithalareef.tech',
+            'callback_url': 'https://00bb-105-113-62-101.ngrok-free.app',
             'metadata': {
                 'project_id': project_id,
             }
@@ -167,7 +167,7 @@ def initiate_payment(project_id):
             user_email = current_user.email
         else:
             user_id = secrets.token_hex(6)
-            user_email = 'anon@gmail.com'
+            user_email = form.email.data
         project = Project.find_obj_by(id=project_id)
         if project.user_id == user_id:
             flash("You can't fund your own project", 'danger')
