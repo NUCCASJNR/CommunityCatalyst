@@ -49,7 +49,7 @@ def create_payment_link(project_id, amount, user_id, email):
             'email': email,
             'reference': reference,
             'currency': 'NGN',
-            'callback_url': 'https://00bb-105-113-62-101.ngrok-free.app',
+            'callback_url': 'https://community-catalyst.codewithalareef.tech/',
             'metadata': {
                 'project_id': project_id,
             }
