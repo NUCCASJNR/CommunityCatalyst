@@ -3,16 +3,19 @@
 different parts of The Flask application. These functions are shared and
 imported by other modules, such as routes/signup.py and routes/verify.py,
 to avoid circular import issues and promote code reusability."""
-
-from flask import render_template, url_for, request
+from PIL import Image
+from flask import render_template, url_for, request, flash, redirect
 import secrets
 from datetime import datetime, timedelta
 import requests
 from os import getenv
+from flask_login import current_user, login_user
+from config import app
 from routes import frontend
 from werkzeug.utils import secure_filename
 import os
 from models.project import Project
+from models.user import User, db
 
 
 def send_verification_email(user):
@@ -29,7 +32,7 @@ def send_verification_email(user):
     verification_url = url_for('frontend.verify', verification_code=verification_code, _external=True, _scheme='https')
     html_body = render_template('verification.html', username=user.username, verification_url=verification_url)
     API_KEY = getenv("ELASTIC_EMAIL")
-    sender = 'info@community-catalyst.codewithalareef.tech'
+    sender = 'community-catalyst@polyglotte.tech'
     receiver = user.email
     subject = 'Account Verification'
     url = 'https://api.elasticemail.com/v2/email/send'
@@ -46,6 +49,21 @@ def send_verification_email(user):
     if response.status_code == 200:
         print('Email successfully sent to user')
     print(f'Error occurred with error code: {response.status_code}')
+
+
+def save_picture(project_picture, path):
+    random_hex = secrets.token_hex(8)
+    _, file_extension = os.path.splitext(project_picture.filename)
+    picture_filename = random_hex + file_extension
+    picture_path = os.path.join(app.root_path, f'static/img/{path}', picture_filename)
+    print("Picture Filename:", picture_filename)
+    print("Picture Path:", picture_path)
+
+    output_size = (960, 540)
+    i = Image.open(project_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_filename
 
 
 def upload_image():
@@ -96,9 +114,10 @@ def verify(verification_code):
             return redirect(url_for('frontend.home'))
         user.verified = True
         user.verification_code = None
+        User.save(user)
         login_user(user)
         flash('Your account has successfully been created'
-              'and you have been logged in, Happy Funding', 'success')
+              ' and you have been logged in, Happy Funding', 'success')
     else:
         flash('Invalid verification code. Please try again', 'danger')
     return redirect(url_for('frontend.home'))

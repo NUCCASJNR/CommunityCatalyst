@@ -51,9 +51,13 @@ def login():
 @frontend.route('/dashboard')
 @login_required
 def dashboard():
+    pr_count_query = {'user': current_user}
+    cr_count_query = {'user': current_user}
+    projects_count = Project.count_objs(**pr_count_query)
     projects = Project.query.order_by(Project.created_at.desc()).filter_by(user=current_user).all()
+    contributions_count = Contribution.count_objs(**cr_count_query)
     contributions = Contribution.query.order_by(Contribution.created_at.desc()).filter_by(user=current_user).all()
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', projects_count=projects_count, contributions_count=contributions_count)
 
 
 @frontend.route('/logout')

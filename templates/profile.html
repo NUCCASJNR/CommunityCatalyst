@@ -8,12 +8,12 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="static/member_assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../static/member_assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="static/member_assets/css/adminlte.min.css">
+  <link rel="stylesheet" href="../static/member_assets/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   <link rel="stylesheet" href="static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+   <link rel="stylesheet" href="../static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <style type="text/css">
     td p {
        margin: -0.3rem;
@@ -58,7 +58,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="dashboard.html" class="brand-link">
-        <img src="static/member_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
+        <img src="../static/member_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
              style="opacity: .8">
       </a>
 
@@ -144,20 +144,31 @@
                   <br>
                   <div class="col-md-12 table-responsive">
                      <div class="card-body">
+                     <form action="" method="POST" enctype="multipart/form-data">
+                         {{ form.hidden_tag() }}
+                         {{ form.csrf_token }}
                         <div class="row">
                            <div class="col-md-3">
                               <div class="form-group">
-                                 <img src="static/member_assets/img/profile.png" width="150" style="border-radius: 5px"><br><br>
-                                 <label for="exampleInputFile">Choose Profile</label>
+                                 <img id= "profile_pic" class="rounded-circle img-fluid mb-3 mt-4" src="{{ image_file }}" style="border-radius: 5px;max-height:200px;width:200px;height:200px;"><br><br>
+{#                                 <label for="exampleInputFile">Choose Profile</label>#}
+                                   <label for="input_file" class="btn btn-primary btn-sm">Change Picture</label>
                                  <div class="input-group">
                                     <div class="custom-file">
-                                       <input type="file" class="custom-file-input" id="exampleInputFile">
-                                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+{#                                       <input type="file" class="custom-file-input" id="exampleInputFile">#}
+{#                                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>#}
+                                        {{ form.picture(class="btn btn-primary btn-sm", id="input_file") }}
+                                                {% if form.picture.errors %}
+                                                    {% for error in form.picture.errors %}
+                                                        <span class="text-danger">{{ error }}</span>
+                                                    {% endfor %}
+                                                {% endif %}
                                     </div>
                                  </div>
                               </div>
                            </div>
                            <div class="col-md-9">
+
                               <div class="card-header">
                                  <span class="fa fa-user"> Profile Information</span>
                               </div>
@@ -165,52 +176,58 @@
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">First Name</label>
-                                       <input type="email" class="form-control" placeholder="first name">
+                                        {{ form.first_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Middle Name</label>
-                                       <input type="email" class="form-control" placeholder="middle name">
+                                        {{ form.middle_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Last Name</label>
-                                       <input type="email" class="form-control" placeholder="last name">
+                                        {{ form.last_name(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label>Gender</label>
-                                       <select class="form-control">
-                                          <option>Male</option>
-                                          <option>Female</option>
-                                       </select>
+                                       {{ form.gender(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Birthday</label>
-                                       <input type="date" class="form-control" placeholder="last name">
+                                        {{ form.birthday(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Contact</label>
-                                       <input type="number" class="form-control" placeholder="contact">
+                                        {{ form.contact(class="form-control fc") }}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Email</label>
-                                       <input type="email" class="form-control" placeholder="email">
+                                       {% if form.email.errors %}
+                                           {{ form.email(class="form-control form-control is-invalid") }}
+                                           <div class="invalid-feedback">
+                                               {% for error in form.email.errors %}
+                                                   <span>{{ error }}</span>
+                                               {% endfor %}
+                                           </div>
+                                       {% else %}
+                                           {{ form.email(class="form-control form-control") }}
+                                       {% endif %}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Address</label>
-                                       <input type="email" class="form-control" placeholder="address">
+                                        {{ form.address(class="form-control form-control") }}
                                     </div>
                                  </div>
                                  <div class="col-md-12">
@@ -221,7 +238,7 @@
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Username</label>
-                                       <input type="email" class="form-control" placeholder="username">
+                                       {{ form.username(class="form-control form-control") }}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
@@ -231,18 +248,19 @@
                                     </div>
                                  </div>
                               </div>
+                               {{ form.submit(class="btn btn-primary") }}
+                               </form>
                            </div>
                         </div>
                      </div>
-                     
+
                   </div>
-               </div>
-            </div>
          </section>
-      </div>
-   </div>
+               </div>
+
+            </div>
   <!-- jQuery -->
-  <script src="static/member_assets/plugins/jquery/jquery.min.js"></script>
+  <script src="../static/member_assets/plugins/jquery/jquery.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -250,19 +268,20 @@
   <!-- ChartJS -->
   <script src="member_assets/plugins/chart.js/Chart.min.js"></script>
   <!-- overlayScrollbars -->
-  <script src="static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="static/member_assets/js/adminlte.js"></script>
+  <script src="../static/member_assets/js/adminlte.js"></script>
    <!-- DataTables  & Plugins -->
-   <script src="static/member_assets/tables/datatables/jquery.dataTables.min.js"></script>
-   <script src="static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-   <script src="static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-   <script src="static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+   <script src="../static/member_assets/tables/datatables/jquery.dataTables.min.js"></script>
+   <script src="../static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+   <script src="../static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+   <script src="../static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
   <script>
       $(function () {
          $("#example1").DataTable();
       });
    </script>
+    <script src="../static/js/profile.js"></script>
 </body>
 
 </html>

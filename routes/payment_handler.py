@@ -5,7 +5,8 @@ import json
 from os import getenv
 import requests
 from flask_login import current_user
-from flask import request, render_template, redirect, url_for, flash
+from flask import request, render_template, redirect, url_for, flash, session
+import time
 from models.project import Project
 from forms.payment import PaymentForm
 from routes import frontend
@@ -13,12 +14,14 @@ from models.contribution import Contribution
 import logging
 from paystackapi.paystack import  Paystack
 import secrets
+from utils.redis_client import RedisClient
+from decimal import Decimal
 paystack_key = getenv('PAYSTACK_KEY')
 
 logging.basicConfig(level=logging.DEBUG, filename='app.log', filemode='w')
 
 
-def create_payment_link(project_id, amount, user_id):
+def create_payment_link(project_id, amount, user_id, email):
     """
     Create a Paystack payment link for a given project and amount.
 
@@ -36,36 +39,53 @@ def create_payment_link(project_id, amount, user_id):
     the authorization URL for payment initiation. In case of an error, it logs an error message and returns an error message.
     """
     try:
+        token = secrets.token_hex(6)
+        reference = f'project_{project_id}_user_{user_id}_time_{token}'
         paystack_endpoint = "https://api.paystack.co/transaction/initialize"
         headers = {
             'Authorization': f'Bearer {paystack_key}',
             'Content-Type': 'application/json',
         }
         data = {
-            'amount': float(amount) * 100,  # Paystack expects amount in kobo
-            'reference': f'project_{project_id}_user_{user_id}_payment',
+            'amount': float(amount) * 100,  # Convert to float and then to kobo
+            'email': email,
+            'reference': reference,
             'currency': 'NGN',
-            'callback_url': 'https://community-catalyst.codewithalareef.tech/paystack-callback',
+            'callback_url': 'https://community-catalyst.codewithalareef.tech/callback',
             'metadata': {
                 'project_id': project_id,
             }
         }
         response = None
         response = requests.post(paystack_endpoint, headers=headers, json=data)
+
         if response.status_code == 200:
             result = response.json()
-            return result['data']['authorization_url']  
+            return result
         else:
-            # Handle the error or return an error message
+            # Log the error response for debugging
             logging.error(f'Error creating payment link: {response.status_code}')
+            logging.error(f'Response from Paystack API: {response.text}')
             return f"Error: {response.status_code} - {response.text}"
     except requests.exceptions.RequestException as network_error:
         logging.error(f'Network error creating payment link: {network_error}')
         return f'Network error creating payment link: {network_error}'
     except Exception as e:
         logging.error(f'Error creating payment link: {e}')
-        logging.error(f'Response from Paystack API: {response.text}')  # Log the response for debugging
         return f'Error creating payment link: {e}'
+    
+def verify_transaction_status(reference):
+    url = f"https://api.paystack.co/transaction/verify/{reference}"
+    headers = {
+            'Authorization': f'Bearer {paystack_key}'
+        }
+    response = requests.get(url, headers=headers)  # Make the API call to verify the transaction
+
+    if response.status_code == 200:
+        result = response.json()
+        if result['status'] == True and result['data']['status'] == 'success':
+            return True
+    return False
 
 
 def update_project_raised_amount(project_id, amount):
@@ -88,14 +108,14 @@ def update_project_raised_amount(project_id, amount):
     """
     project = Project.find_obj_by(id=project_id)
     if project:
-        project.raised += amount
+        amount = Decimal(amount)
+        project.current_amount += amount
         project.save()
     else:
         # flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
-
-def record_contribution(project_id, amount):
+def record_contribution(project_id, amount, user_id):
     """
       Record a contribution in the contributions table for tracking.
 
@@ -110,45 +130,19 @@ def record_contribution(project_id, amount):
           None
 
       This function records a contribution in the contributions table, associating it with the specific project.
-      """
-    contribution = Contribution(
-        project_id=project_id,
-        amount=amount
-    )
-    contribution.save()
-
-
-@frontend.route('/paystack-callback', methods=['POST'])
-def paystack_callback():
     """
-      Handle the callback from Paystack after a payment is completed.
-
-      Args:
-          None
-
-      Returns:
-          Redirect to the project page.
-
-      Raises:
-          None
-
-      This function handles the callback from Paystack after a payment is completed. It updates the project's
-      raised amount and displays a success or error message to the user.
-      """
-    data = request.get_json()
-    if data['status'] == 'success':
-        project_id = data['metadata']['project_id']
-        amount_funded = data['amount'] / 100
-        if amount_funded <= 50000:
-            amount_funded -= 50
-        else:
-            amount_funded -= 100
-        update_project_raised_amount(project_id, amount_funded)
-        flash('Payment successful!', 'success')
-    else:
-        flash('Payment failed.', 'error')
-    return redirect(url_for('frontend.project', project_id=project_id))
-
+    try:
+        # Log the inputs for debugging
+        logging.info(f'Recording contribution - project_id: {project_id}, amount: {amount}')
+        
+        contribution = Contribution(
+            user_id=user_id,
+            project_id=project_id,
+            amount=amount
+        )
+        contribution.save()
+    except Exception as e:
+        logging.error(f'Error recording contribution: {e}')
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
 def initiate_payment(project_id):
@@ -166,17 +160,58 @@ def initiate_payment(project_id):
 
       This function renders the payment form template for the user to enter the contribution amount.
       Upon successful form submission, it initiates the payment process by redirecting to the Paystack payment page.
-      """
+    """
     form = PaymentForm()
     if form.validate_on_submit():
         amount = form.amount.data
         if current_user.is_authenticated:
             user_id = current_user.id
+            user_email = current_user.email
         else:
             user_id = secrets.token_hex(6)
-        authorization_url = create_payment_link(project_id, amount, user_id)
-        if authorization_url.startswith('Error'):
-            flash('Error creating payment link', 'error')
-            return redirect(url_for('frontend.project', project_id=project_id))
-        return redirect(authorization_url)
-    return render_template('payment.html', form=form)
+            user_email = form.email.data
+        project = Project.find_obj_by(id=project_id)
+        if project.user_id == user_id:
+            flash("You can't fund your own project", 'danger')
+            return redirect(url_for('frontend.home'))
+        url = create_payment_link(project_id, amount, user_id, user_email)
+        authorization_url = url['data']['authorization_url'] 
+        # Check if the authorization URL is successfully generated
+        if not authorization_url.startswith('Error'):
+            if amount <= 50000:
+                amount -= 50
+            else:
+                amount -= 100
+                
+            session['payment_reference'] = url['data']['reference']
+            session['amount'] = amount
+            session['project_id'] = project_id
+            session['user_id'] = user_id
+            return redirect(authorization_url)
+
+    return render_template('payment.html', form=form, project_id=project_id)
+
+
+@frontend.route('/callback', methods=['GET'])
+def paystack_callback():
+    # Retrieve the payment reference and other necessary data from the session
+    payment_reference = session.get('payment_reference')
+    amount = session.get('amount')
+    project_id = session.get('project_id')
+    user_id = session.get('user_id')
+
+    if payment_reference is not None:
+        # Call verify_transaction_status with the payment reference
+        if verify_transaction_status(payment_reference):
+            # Update project raised amount and record contribution
+            update_project_raised_amount(project_id, amount)
+            record_contribution(project_id, amount, user_id)
+            # flash('Payment successful', 'success')
+            logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
+        else:
+            # flash('Payment failed', 'danger')
+            logging.info(f'Payment failed for project_id {project_id} and amount {amount}')
+    else:
+        flash('Payment reference not found', 'danger')
+
+    return redirect(url_for('frontend.home'))

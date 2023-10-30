@@ -13,22 +13,8 @@ from models.project import Project
 from flask import flash, redirect, render_template, url_for, abort
 from flask_login import login_required, current_user
 from PIL import Image
-
-
-def save_picture_project(project_picture):
-    random_hex = secrets.token_hex(8)
-    _, file_extension = os.path.splitext(project_picture.filename)
-    picture_filename = random_hex + file_extension
-    picture_path = os.path.join(app.root_path, 'templates/static/img/project_pics', picture_filename)
-    print("Picture Filename:", picture_filename)
-    print("Picture Path:", picture_path)
-
-    output_size = (960, 540)
-    i = Image.open(project_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-    return picture_filename
-
+from routes.utils import save_picture
+from models.contribution import Contribution
 
 @frontend.route('/create-project', methods=['GET', 'POST'])
 @login_required
@@ -38,7 +24,7 @@ def create_project():
         if form.category.data == '':
             form.category.data = 'Miscellaneous'
         if form.picture.data:
-            picture_filename = save_picture_project(form.picture.data)
+            picture_filename = save_picture(form.picture.data, 'project_pics')
         else:
             picture_filename = 'templates/static/img/project_pics/logo.png'
         project = Project(campaign_name=form.campaign_name.data,
@@ -50,7 +36,6 @@ def create_project():
                           user=current_user)
         project.save()
         flash('Project created successfully', 'success')
-        # return render_template('create_project.html', form=form)
         return redirect(url_for('frontend.create_project'))
     return render_template('create_project.html', form=form)
 
@@ -86,3 +71,14 @@ def user_gallery():
     pictures = Project.query.filter_by(user=current_user).order_by(Project.project_picture.desc()).all()
     return render_template('gallery.html', pictures=pictures)
 
+@frontend.route('user_donation')
+@login_required
+def user_donation():
+    query = {'user': current_user}
+    donations = Contribution.query.filter_by(**query).all()
+    project_ids = [donation.project_id for donation in donations]
+    projects = Project.query.filter(Project.id.in_(project_ids)).all()
+    # Combine donations and projects into a zipped list
+    zipped_data = zip(donations, projects)
+
+    return render_template('donation.html', zipped_data=zipped_data)
