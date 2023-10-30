@@ -11,7 +11,7 @@
   <h1>Account Verification</h1>
   <p>Dear user <strong>{{ username }}</strong>,</p>
   <p>Thank you for signing up for CommunityCatalyst! To complete your registration, Please verify your account using the following link:</p>
-  <p><a href="{{ url_for('verification_url') }}"> Click here</a></p>
+  <p><a href="{{ url_for('frontend.verify', verification_code=verification_code, _external=True, _scheme='https') }}"> Click here</a></p>
   <p>The verification link expires in 30 mins</p>
   <p>If you have any questions or need further assistance, please don't hesitate to contact our support team at <a href="mailto:support@polyglotte.com">support@polyglotte.com</a>.</p>
   <p>Best regards,</p>
