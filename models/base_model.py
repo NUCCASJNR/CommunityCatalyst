@@ -111,3 +111,11 @@ class BaseModel(db.Model):
             return user
         except NoResultFound:
             return None
+    
+    @classmethod
+    def count_objs(cls, **kwargs):
+        """
+        Count the number of objects in a class
+        """
+        return cls.query.filter_by(**kwargs).count()
+
