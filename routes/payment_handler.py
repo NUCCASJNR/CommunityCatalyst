@@ -5,7 +5,7 @@ import json
 from os import getenv
 import requests
 from flask_login import current_user
-from flask import request, render_template, redirect, url_for, flash
+from flask import request, render_template, redirect, url_for, flash, session
 import time
 from models.project import Project
 from forms.payment import PaymentForm
@@ -14,6 +14,7 @@ from models.contribution import Contribution
 import logging
 from paystackapi.paystack import  Paystack
 import secrets
+from utils.redis_client import RedisClient
 paystack_key = getenv('PAYSTACK_KEY')
 
 logging.basicConfig(level=logging.DEBUG, filename='app.log', filemode='w')
@@ -49,7 +50,7 @@ def create_payment_link(project_id, amount, user_id, email):
             'email': email,
             'reference': reference,
             'currency': 'NGN',
-            'callback_url': 'https://community-catalyst.codewithalareef.tech/',
+            'callback_url': 'https://community-catalyst.codewithalareef.tech/callback',
             'metadata': {
                 'project_id': project_id,
             }
@@ -75,8 +76,7 @@ def create_payment_link(project_id, amount, user_id, email):
 def verify_transaction_status(reference):
     url = f"https://api.paystack.co/transaction/verify/{reference}"
     headers = {
-            'Authorization': f'Bearer {paystack_key}',
-            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {paystack_key}'
         }
     response = requests.get(url, headers=headers)  # Make the API call to verify the transaction
 
@@ -141,7 +141,7 @@ def record_contribution(project_id, amount, user_id):
         contribution.save()
     except Exception as e:
         logging.error(f'Error recording contribution: {e}')
-        
+
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
 def initiate_payment(project_id):
     """
@@ -180,20 +180,32 @@ def initiate_payment(project_id):
                 amount -= 50
             else:
                 amount -= 100
-
-            # Redirect to Paystack payment page
+                
+            session['payment_reference'] = url['data']['reference']
+            session['amount'] = amount
+            session['project_id'] = project_id
             return redirect(authorization_url)
 
-    # Capture the Paystack reference when the user returns
-    reference = request.args.get('reference') or request.args.get('trxref')
+    return render_template('payment.html', form=form, project_id=project_id)
 
-    if reference:
-        if verify_transaction_status(reference):
-            # Payment was successful, update project and record contribution
+
+@frontend.route('/callback', methods=['GET'])
+def paystack_callback():
+    # Retrieve the payment reference and other necessary data from the session
+    payment_reference = session.get('payment_reference')
+    amount = session.get('amount')
+    project_id = session.get('project_id')
+
+    if payment_reference is not None:
+        # Call verify_transaction_status with the payment reference
+        if verify_transaction_status(payment_reference):
+            # Update project raised amount and record contribution
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
-            flash('Payment was successful!', 'success')
+            flash('Payment successful', 'success')
         else:
-            flash('Payment was not successful!', 'error')
+            flash('Payment failed', 'danger')
+    else:
+        flash('Payment reference not found', 'danger')
 
-    return render_template('payment.html', form=form, project_id=project_id)
+    return redirect(url_for('frontend.home'))

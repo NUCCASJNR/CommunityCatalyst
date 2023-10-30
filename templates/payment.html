@@ -16,6 +16,7 @@
                 <p class="text-danger">{{ error }}</p>
             {% endfor %}
         </div>
+        {% if not current_user.is_authenticated %}
         <div class="form-group">
             <label for="{{ form.email.id }}">Email</label>
             {{ form.email(class="form-control") }}
@@ -23,6 +24,7 @@
                 <p class="text-danger">{{ error }}</p>
             {% endfor %}
         </div>
+        {% endif %}
         {{ form.submit(class="btn btn-primary") }}
     </form>
 </body>

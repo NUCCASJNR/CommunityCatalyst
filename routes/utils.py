@@ -15,6 +15,7 @@ import os
 from models.project import Project
 
 
+
 def send_verification_email(user):
     """
     Sends a verification email to a user with a verification code
@@ -29,7 +30,7 @@ def send_verification_email(user):
     verification_url = url_for('frontend.verify', verification_code=verification_code, _external=True, _scheme='https')
     html_body = render_template('verification.html', username=user.username, verification_url=verification_url)
     API_KEY = getenv("ELASTIC_EMAIL")
-    sender = 'info@community-catalyst.codewithalareef.tech'
+    sender = 'community-catalyst@polyglotte.tech'
     receiver = user.email
     subject = 'Account Verification'
     url = 'https://api.elasticemail.com/v2/email/send'

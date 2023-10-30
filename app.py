@@ -10,6 +10,7 @@ from flask_cors import CORS
 from routes import frontend
 import logging
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+from utils.redis_client import RedisClient
 
 app.register_blueprint(frontend)
 csrf = CSRFProtect(app)
