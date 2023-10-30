@@ -15,7 +15,7 @@ from routes import frontend
 from werkzeug.utils import secure_filename
 import os
 from models.project import Project
-
+from models.user import User
 
 
 def send_verification_email(user):
