@@ -21,13 +21,13 @@ def update_profile():
         current_user.last_name = form.last_name.data
         current_user.gender = form.gender.data
         current_user.birthday = form.birthday.data
-        current_user.contact = form.contact.data
+        current_user.phone_number = form.contact.data
         current_user.email = form.email.data
         current_user.address = form.address.data
         current_user.username = form.username.data
         db.session.commit()
         flash('Your account has been successfully updated', 'success')
-        return redirect(url_for('update_profile'))
+        return redirect(url_for('frontend.update_profile'))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
         form.middle_name.data = current_user.middle_name
