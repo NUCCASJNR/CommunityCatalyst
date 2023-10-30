@@ -184,6 +184,7 @@ def initiate_payment(project_id):
             session['payment_reference'] = url['data']['reference']
             session['amount'] = amount
             session['project_id'] = project_id
+            session['user_id'] = user_id
             return redirect(authorization_url)
 
     return render_template('payment.html', form=form, project_id=project_id)
@@ -195,6 +196,7 @@ def paystack_callback():
     payment_reference = session.get('payment_reference')
     amount = session.get('amount')
     project_id = session.get('project_id')
+    user_id = session.get('user_id')
 
     if payment_reference is not None:
         # Call verify_transaction_status with the payment reference
