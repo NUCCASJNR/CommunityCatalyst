@@ -15,7 +15,7 @@ from routes import frontend
 from werkzeug.utils import secure_filename
 import os
 from models.project import Project
-from models.user import User
+from models.user import User, db
 
 
 def send_verification_email(user):
@@ -114,7 +114,7 @@ def verify(verification_code):
             return redirect(url_for('frontend.home'))
         user.verified = True
         user.verification_code = None
-        user.save()
+        db.session.commit()
         login_user(user)
         flash('Your account has successfully been created'
               ' and you have been logged in, Happy Funding', 'success')
