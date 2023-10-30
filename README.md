@@ -2,7 +2,7 @@
 
 Community Catalyst is a crowdfunding platform that connects individuals and organizations with impactful projects in their communities. Users can discover, support, and create projects that make a difference in their local areas.
 
-![Community Catalyst](/templates/static/new_assets/img/logo.png)
+![Community Catalyst](/static/new_assets/img/logo.png)
 ## Table of Contents
 
 - [Project Description](#project-description)

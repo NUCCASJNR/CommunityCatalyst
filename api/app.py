@@ -3,10 +3,11 @@
 from api.v1 import *
 from flask import jsonify, Response
 from flask_migrate import Migrate
-from models.base_model import app, db
+from config import app, db
 
 app.register_blueprint(api)
 migrate = Migrate(app, db)
+
 
 @app.errorhandler(404)
 def error(error) -> Response:
