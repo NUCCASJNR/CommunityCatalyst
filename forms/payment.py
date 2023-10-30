@@ -3,6 +3,15 @@ from flask_wtf import FlaskForm
 from wtforms import DecimalField, SubmitField, StringField
 from wtforms.validators import InputRequired, NumberRange, Email, DataRequired
 
+
+class AuthPaymentForm(FlaskForm):
+    amount = DecimalField('Amount', validators=[
+        InputRequired(message='Amount is required'),
+        NumberRange(min=1, message='Amount must be at least 1')
+    ])
+    submit = SubmitField('Make Payment')
+
+
 class PaymentForm(FlaskForm):
     amount = DecimalField('Amount', validators=[
         InputRequired(message='Amount is required'),
