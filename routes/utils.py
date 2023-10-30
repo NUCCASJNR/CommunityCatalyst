@@ -4,7 +4,7 @@ different parts of The Flask application. These functions are shared and
 imported by other modules, such as routes/signup.py and routes/verify.py,
 to avoid circular import issues and promote code reusability."""
 from PIL import Image
-from flask import render_template, url_for, request
+from flask import render_template, url_for, request, flash, redirect
 import secrets
 from datetime import datetime, timedelta
 import requests
