@@ -9,7 +9,7 @@ import secrets
 from datetime import datetime, timedelta
 import requests
 from os import getenv
-from flask_login import current_user
+from flask_login import current_user, login_user
 from config import app
 from routes import frontend
 from werkzeug.utils import secure_filename
