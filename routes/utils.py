@@ -114,7 +114,7 @@ def verify(verification_code):
             return redirect(url_for('frontend.home'))
         user.verified = True
         user.verification_code = None
-        db.session.commit()
+        User.save()
         login_user(user)
         flash('Your account has successfully been created'
               ' and you have been logged in, Happy Funding', 'success')
