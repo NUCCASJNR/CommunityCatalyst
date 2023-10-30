@@ -188,6 +188,7 @@ def record_contribution(project_id, amount, user_id):
 
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
+
 def initiate_payment(project_id):
     """
       Initialize the payment process for a project by rendering the payment form.
