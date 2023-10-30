@@ -8,5 +8,5 @@ class PaymentForm(FlaskForm):
         InputRequired(message='Amount is required'),
         NumberRange(min=1, message='Amount must be at least 1')
     ])
-    email = StringField('Email', validators=[Email(), DataRequired()])
+    email = StringField('Email', validators=[Email()])
     submit = SubmitField('Make Payment')
