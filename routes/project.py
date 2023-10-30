@@ -14,7 +14,7 @@ from flask import flash, redirect, render_template, url_for, abort
 from flask_login import login_required, current_user
 from PIL import Image
 from routes.utils import save_picture
-
+from models.contribution import Contribution
 
 @frontend.route('/create-project', methods=['GET', 'POST'])
 @login_required
@@ -70,3 +70,15 @@ def user_gallery():
     # Query pictures that belong to the current user
     pictures = Project.query.filter_by(user=current_user).order_by(Project.project_picture.desc()).all()
     return render_template('gallery.html', pictures=pictures)
+
+@frontend.route('user_donation')
+@login_required
+def user_donation():
+    query = {'user': current_user}
+    donations = Contribution.query.filter_by(**query).all()
+    project_ids = [donation.project_id for donation in donations]
+    projects = Project.query.filter(Project.id.in_(project_ids)).all()
+    # Combine donations and projects into a zipped list
+    zipped_data = zip(donations, projects)
+
+    return render_template('donation.html', zipped_data=zipped_data)

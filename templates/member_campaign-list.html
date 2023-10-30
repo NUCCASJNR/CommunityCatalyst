@@ -57,7 +57,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="dashboard.html" class="brand-link">
+      <a href="{{ url_for('frontend.home') }}" class="brand-link">
         <img src="../static/member_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
              style="opacity: .8">
       </a>
@@ -69,7 +69,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
             <li class="nav-item">
-              <a href="dashboard.html" class="nav-link">
+              <a href="{{ url_for('frontend.dashboard') }}" class="nav-link">
                 <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -77,18 +77,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./member_campaign-list.html" class="nav-link">
+              <a href="{{ url_for('frontend.user_project') }}" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
                 <p>
                   Campaign List
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url_for('frontend.user_gallery')}}" class="nav-link">
-                <i class="nav-icon fa fa-images"></i>
-                <p>
-                 Gallery
                 </p>
               </a>
             </li>
@@ -155,6 +147,7 @@
                               <th>Description</th>
                               <th>Target Amount</th>
                               <th>Deadline</th>
+                              <th>Project id</th>
                               <th>Banner</th>
 <!--                              <th>Status</th>-->
                               <th>Action</th>
@@ -167,6 +160,7 @@
                            <td>{{ project.description }}</td>
                            <td>{{ project.target_amount }}</td>
                            <td>{{ project.end_date }}</td>
+                            <td>{{ project.id }}</td>
                              <td><img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" /></td>
 <!--                             <td><span class="badge bg-success">approve</span></td>-->
                              <td class="text-right">
