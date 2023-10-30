@@ -114,9 +114,10 @@ def verify(verification_code):
             return redirect(url_for('frontend.home'))
         user.verified = True
         user.verification_code = None
+        user.save()
         login_user(user)
         flash('Your account has successfully been created'
-              'and you have been logged in, Happy Funding', 'success')
+              ' and you have been logged in, Happy Funding', 'success')
     else:
         flash('Invalid verification code. Please try again', 'danger')
     return redirect(url_for('frontend.home'))
