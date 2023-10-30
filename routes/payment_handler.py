@@ -11,6 +11,7 @@ from models.project import Project
 from forms.payment import PaymentForm
 from routes import frontend
 from models.contribution import Contribution
+from models.user import User
 import logging
 from paystackapi.paystack import  Paystack
 import secrets
@@ -87,7 +88,41 @@ def verify_transaction_status(reference):
             return True
     return False
 
+def send_user_project_funded_notification(project_id, amount, email, username):
+    """
+    Send a notification to the project owner when their project is funded.
 
+    Args:
+        project_id (int): The ID of the project that was funded.
+
+    Returns:
+        None
+
+    Raises:
+        None
+
+    This function sends a notification to the project owner when their project is funded.
+    """
+    API_KEY = getenv("ELASTIC_EMAIL")
+    sender = 'community-catalyst@polyglotte.tech'
+    receiver = email
+    subject = 'Project funded notification'
+    html_body = render_template('verification.html', email=email, amount=amount, username=username)
+    url = 'https://api.elasticemail.com/v2/email/send'
+
+    request_payload = {
+        'apikey': API_KEY,
+        'from': sender,
+        'to': receiver,
+        'subject': subject,
+        'bodyHtml': html_body,
+        'isTransactional': False
+    }
+    response = requests.post(url, data=request_payload)
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f'Error occurred with error code: {response.status_code}')
 def update_project_raised_amount(project_id, amount):
     """
     Update the raised amount of a project after receiving a contribution.
@@ -107,10 +142,14 @@ def update_project_raised_amount(project_id, amount):
 
     """
     project = Project.find_obj_by(id=project_id)
+    query = User.find_obj_by(**{'id': project.user_id })
+    email = query.email
+    username = query.username
     if project:
         amount = Decimal(amount)
         project.current_amount += amount
         project.save()
+        send_user_project_funded_notification(project_id, amount, email, username)
     else:
         # flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
