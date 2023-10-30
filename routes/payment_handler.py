@@ -206,9 +206,11 @@ def paystack_callback():
             # Update project raised amount and record contribution
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
-            flash('Payment successful', 'success')
+            # flash('Payment successful', 'success')
+            logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
         else:
-            flash('Payment failed', 'danger')
+            # flash('Payment failed', 'danger')
+            logging.info(f'Payment failed for project_id {project_id} and amount {amount}')
     else:
         flash('Payment reference not found', 'danger')
 
