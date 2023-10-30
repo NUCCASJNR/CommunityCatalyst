@@ -15,6 +15,7 @@ import logging
 from paystackapi.paystack import  Paystack
 import secrets
 from utils.redis_client import RedisClient
+from decimal import Decimal
 paystack_key = getenv('PAYSTACK_KEY')
 
 logging.basicConfig(level=logging.DEBUG, filename='app.log', filemode='w')
@@ -107,6 +108,7 @@ def update_project_raised_amount(project_id, amount):
     """
     project = Project.find_obj_by(id=project_id)
     if project:
+        amount = Decimal(amount)
         project.current_amount += amount
         project.save()
     else:
