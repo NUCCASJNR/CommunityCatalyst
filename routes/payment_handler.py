@@ -109,7 +109,7 @@ def send_user_project_funded_notification(project_id, amount, email, username):
     sender = 'community-catalyst@polyglotte.tech'
     receiver = email
     subject = 'Project funded notification'
-    html_body = render_template('verification.html', email=email, amount=amount, username=username)
+    html_body = render_template('fund_notification.html', email=email, amount=amount, username=username)
     url = 'https://api.elasticemail.com/v2/email/send'
 
     request_payload = {
