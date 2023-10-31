@@ -155,10 +155,10 @@
               </div>
 
               <h2 style="color:rgb(43, 35, 32);">{{ project.campaign_name }}</h2>
+              <h3 style="color:rgb(43, 35, 32);"> Description: {{ project.description }}</h3>
               <div class="float-left">
-
-                <p><strong>Raised: #</strong><small class="text-success">{{ project.current_amount }}</small></p>
-                <p><strong>Goal: #</strong><small class="text-danger">{{ project.target_amount}}</small></p>
+                <p><strong>Raised: ₦</strong><small class="text-success">{{ project.current_amount }}</small></p>
+                <p><strong>Goal: ₦</strong><small class="text-danger">{{ project.target_amount}}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="{{ url_for('frontend.initiate_payment', project_id=project.id )}}" class="btn btn-primary">Donate Now</a>

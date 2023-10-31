@@ -6,28 +6,43 @@
 </head>
 <body>
     <h1>Make a Payment</h1>
-    {% if not current_user.is_authenticated %}
-<div class="form-group">
-    <label for="{{ form.email.id }}">Email</label>
-    {{ form.email(class="form-control") }}
-    {% for error in form.email.errors %}
-        <p class="text-danger">{{ error }}</p>
-    {% endfor %}
-</div>
+    {% if current_user.is_authenticated %}
+    <form method="POST">
+        {{ auth_form.hidden_tag() }}
+        {{ auth_form.csrf_token }}
+        <div class="form-group">
+            <label for="{{ auth_form.amount.id }}">Amount</label>
+            {{ auth_form.amount(class="form-control") }}
+            {% for error in auth_form.amount.errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {{ auth_form.submit(class="btn btn-primary") }}
+    </form>
+    {% else %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="{{ form.amount.id }}">Amount</label>
+            {{ form.amount(class="form-control") }}
+            {% for error in form.amount.errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.email.id }}">Email</label>
+            {{ form.email(class="form-control") }}
+            {% for error in form.email.errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+
 {% endif %}
 
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.csrf_token }}
-    <div class="form-group">
-        <label for="{{ form.amount.id }}">Amount</label>
-        {{ form.amount(class="form-control") }}
-        {% for error in form.amount.errors %}
-            <p class="text-danger">{{ error }}</p>
-        {% endfor %}
-    </div>
-    {{ form.submit(class="btn btn-primary") }}
-</form>
+
 
 </body>
 </html>
