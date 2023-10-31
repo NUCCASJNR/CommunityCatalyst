@@ -90,6 +90,7 @@ def verify_transaction_status(reference):
             return True
     return False
 
+
 def send_user_project_funded_notification(project_id, amount, email, username):
     """
     Send a notification to the project owner when their project is funded.
@@ -109,7 +110,7 @@ def send_user_project_funded_notification(project_id, amount, email, username):
     sender = 'community-catalyst@polyglotte.tech'
     receiver = email
     subject = 'Project funded notification'
-    html_body = render_template('fund_notification.html', email=email, amount=amount, username=username)
+    html_body = render_template('fund_notification.html', email=email, amount=amount, username=username, project_id=project_id)
     url = 'https://api.elasticemail.com/v2/email/send'
 
     request_payload = {
@@ -125,6 +126,8 @@ def send_user_project_funded_notification(project_id, amount, email, username):
         print(response.json())
     else:
         print(f'Error occurred with error code: {response.status_code}')
+
+
 def update_project_raised_amount(project_id, amount):
     """
     Update the raised amount of a project after receiving a contribution.
@@ -188,7 +191,6 @@ def record_contribution(project_id, amount, user_id):
 
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
-
 def initiate_payment(project_id):
     """
       Initialize the payment process for a project by rendering the payment form.
