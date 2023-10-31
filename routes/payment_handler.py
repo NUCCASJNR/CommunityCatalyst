@@ -243,9 +243,12 @@ def initiate_payment(project_id):
         user_email = form.email.data
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
-        username = current_user.username
-        user_id = current_user.id
-        user_email = current_user.email
+        project = Project.find_obj_by(id=project_id)
+        query = project.user_id
+        obj = User.find_obj_by(**{"id": query})
+        username = obj.username
+        user_id = obj.id
+        user_email = obj.email
         # if current_user.is_authenticated:
         #     user_id = current_user.id
         #     user_email = current_user.email
