@@ -6,3 +6,4 @@ from models.comment import Comment
 from models.contribution import Contribution
 from models.project import Project
 from models.user import User
+from models.withdraw import WithDraw

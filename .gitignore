@@ -8,3 +8,4 @@ routes/__pycache__
 .idea
 api/migrations
 forms/__pycache__
+.my
