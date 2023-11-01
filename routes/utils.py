@@ -48,7 +48,8 @@ def send_verification_email(user):
     response = requests.post(url, data=request_payload)
     if response.status_code == 200:
         print('Email successfully sent to user')
-    print(f'Error occurred with error code: {response.status_code}')
+    else:
+        print(f'Error occurred with error code: {response.status_code}')
 
 
 def save_picture(project_picture, path):

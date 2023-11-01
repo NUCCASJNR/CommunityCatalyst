@@ -16,6 +16,7 @@ from PIL import Image
 from routes.utils import save_picture
 from models.contribution import Contribution
 
+
 @frontend.route('/create-project', methods=['GET', 'POST'])
 @login_required
 def create_project():
@@ -70,6 +71,7 @@ def user_gallery():
     # Query pictures that belong to the current user
     pictures = Project.query.filter_by(user=current_user).order_by(Project.project_picture.desc()).all()
     return render_template('gallery.html', pictures=pictures)
+
 
 @frontend.route('user_donation')
 @login_required

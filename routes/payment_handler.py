@@ -11,6 +11,7 @@ from models.project import Project
 from forms.payment import PaymentForm, AuthPaymentForm
 from routes import frontend
 from models.contribution import Contribution
+from models.user import User
 import logging
 from paystackapi.paystack import Paystack
 import secrets
@@ -90,6 +91,68 @@ def verify_transaction_status(reference):
     return False
 
 
+def send_user_project_funded_notification(project_id, amount, email, username):
+    """
+    Send a notification to the project owner when their project is funded.
+
+    Args:
+        project_id (int): The ID of the project that was funded.
+
+    Returns:
+        None
+
+    Raises:
+        None
+
+    This function sends a notification to the project owner when their project is funded.
+    """
+    API_KEY = getenv("ELASTIC_EMAIL")
+    sender = 'community-catalyst@polyglotte.tech'
+    receiver = email
+    subject = 'Project funded notification'
+    html_body = render_template('fund_notification.html', email=email, amount=amount, username=username, project_id=project_id)
+    url = 'https://api.elasticemail.com/v2/email/send'
+
+    request_payload = {
+        'apikey': API_KEY,
+        'from': sender,
+        'to': receiver,
+        'subject': subject,
+        'bodyHtml': html_body,
+        'isTransactional': False
+    }
+    response = requests.post(url, data=request_payload)
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f'Error occurred with error code: {response.status_code}')
+
+
+def send_donor_email(project_id, amount, email, username):
+    """Docs soon"""
+    API_KEY = getenv("ELASTIC_EMAIL")
+    sender = 'community-catalyst@polyglotte.tech'
+    receiver = email
+    subject = "Your Support Makes a Difference"
+    html_body = render_template('donor.html', email=email, amount=amount, username=username,
+                                project_id=project_id)
+    url = 'https://api.elasticemail.com/v2/email/send'
+
+    request_payload = {
+        'apikey': API_KEY,
+        'from': sender,
+        'to': receiver,
+        'subject': subject,
+        'bodyHtml': html_body,
+        'isTransactional': False
+    }
+    response = requests.post(url, data=request_payload)
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f'Error occurred with error code: {response.status_code}')
+
+
 def update_project_raised_amount(project_id, amount):
     """
     Update the raised amount of a project after receiving a contribution.
@@ -109,10 +172,14 @@ def update_project_raised_amount(project_id, amount):
 
     """
     project = Project.find_obj_by(id=project_id)
+    query = User.find_obj_by(**{'id': project.user_id })
+    email = query.email
+    username = query.username
     if project:
         amount = Decimal(amount)
         project.current_amount += amount
         project.save()
+        send_user_project_funded_notification(project_id, amount, email, username)
     else:
         # flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
@@ -168,6 +235,10 @@ def initiate_payment(project_id):
     amount = 0
     user_id = ''
     user_email = ''
+    project = Project.find_obj_by(id=project_id)
+    if project.user_id == user_id:
+        flash("You can't fund your own project", 'danger')
+        return redirect(url_for('frontend.home'))
     form = PaymentForm()
     auth_form = AuthPaymentForm()
     if form.validate_on_submit():
@@ -176,17 +247,15 @@ def initiate_payment(project_id):
         user_email = form.email.data
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
-        user_id = current_user.id
-        user_email = current_user.email
-        # if current_user.is_authenticated:
-        #     user_id = current_user.id
-        #     user_email = current_user.email
-        # else:
-        #     ...
-        project = Project.find_obj_by(id=project_id)
-        if project.user_id == user_id:
-            flash("You can't fund your own project", 'danger')
-            return redirect(url_for('frontend.home'))
+        if current_user.is_authenticated:
+            username = current_user.username
+            user_id = current_user.id
+            user_email = current_user.email
+        else:
+            username = ''
+            user_id = secrets.token_hex(6)
+            user_email = form.email.data
+
         url = create_payment_link(project_id, amount, user_id, user_email)
         authorization_url = url['data']['authorization_url']
         # Check if the authorization URL is successfully generated
@@ -200,6 +269,8 @@ def initiate_payment(project_id):
             session['amount'] = amount
             session['project_id'] = project_id
             session['user_id'] = user_id
+            session['donor_email'] = user_email
+            session['donor_username'] = username or ''
             return redirect(authorization_url)
 
     return render_template('payment.html', form=form, auth_form=auth_form, project_id=project_id)
@@ -212,6 +283,8 @@ def paystack_callback():
     amount = session.get('amount')
     project_id = session.get('project_id')
     user_id = session.get('user_id')
+    email = session.get('donor_email')
+    username = session.get('donor_username')
 
     if payment_reference is not None:
         # Call verify_transaction_status with the payment reference
@@ -219,6 +292,7 @@ def paystack_callback():
             # Update project raised amount and record contribution
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
+            send_donor_email(project_id, amount, email, username)
             # flash('Payment successful', 'success')
             logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
         else:

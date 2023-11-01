@@ -1,2 +1,212 @@
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 688-307-374
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00045s] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:03:59] "GET /pay/ba3e5151-4403-420b-987e-0859c343ee2c HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:03:59] "[36mGET /static/new_assets/img/1.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:03:59] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:04] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 7.123s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[generated in 0.00026s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:06] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "GET /static/img/project_pics/None HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "GET /static/assets/vendor/boxicons/css/boxicons.woff2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:07] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:08] "GET /static/assets/vendor/boxicons/css/boxicons.woff HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:08] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:08] "GET /static/assets/vendor/boxicons/css/boxicons.ttf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:08] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:09] "GET /pay/ba3e5151-4403-420b-987e-0859c343ee2c HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:10] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:11] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:14] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:14] "[36mGET /static/new_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:14] "[36mGET /static/new_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:14] "[36mGET /static/new_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:14] "[36mGET /static/new_assets/plugins/fontawesome-free/css/fa-solid-900.woff2 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:15] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.username = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00029s] ('xFrankenstein', 1)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:30] "POST /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:30] "[36mGET /static/new_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:30] "[36mGET /static/new_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:30] "[36mGET /static/new_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:30] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.username = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.Engine:[cached since 5.691s ago] ('xFrankenstein', 1)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:35] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 37.21s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[generated in 0.00045s] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[generated in 0.00031s] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[generated in 0.00499s] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id ORDER BY contributions.created_at DESC
+INFO:sqlalchemy.engine.Engine:[generated in 0.00039s] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:36] "[36mGET /static/member_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/plugins/fontawesome-free/css/fa-solid-900.woff2 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/js/adminlte.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "GET /static/member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/tables/datatables/jquery.dataTables.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "[36mGET /static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:37] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 34.86s ago] ()
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 42.24s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:41] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "GET /static/img/project_pics/None HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:42] "GET /static/assets/vendor/boxicons/css/boxicons.woff2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:43] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:43] "GET /static/assets/vendor/boxicons/css/boxicons.woff HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:43] "GET /static/assets/vendor/boxicons/css/boxicons.ttf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:43] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 46.06s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:45] "GET /pay/ba3e5151-4403-420b-987e-0859c343ee2c HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:45] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 49.57s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE projects.id = %s 
+ LIMIT %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00027s] ('ba3e5151-4403-420b-987e-0859c343ee2c', 1)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:48] "[32mPOST /pay/ba3e5151-4403-420b-987e-0859c343ee2c HTTP/1.1[0m" 302 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 42.46s ago] ()
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 49.83s ago] ('063b5895-9fec-423e-aa75-9367779179c0',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:48] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "GET /static/img/project_pics/None HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:49] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:50] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:50] "GET /static/assets/vendor/boxicons/css/boxicons.woff2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:50] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:50] "GET /static/assets/vendor/boxicons/css/boxicons.woff HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:50] "GET /static/assets/vendor/boxicons/css/boxicons.ttf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Oct/2023 23:04:51] "GET /favicon.ico HTTP/1.1" 200 -
