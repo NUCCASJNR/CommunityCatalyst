@@ -16,4 +16,5 @@ class Contribution(BaseModel, db.Model):
     project_id = \
         db.Column(db.String(126), db.ForeignKey('projects.id'), nullable=False)
     amount = db.Column(db.Numeric(precision=10, scale=2))
+    project = db.relationship('Project', back_populates='contributions')
     user = db.relationship('User', back_populates='contributions')
