@@ -235,6 +235,10 @@ def initiate_payment(project_id):
     amount = 0
     user_id = ''
     user_email = ''
+    project = Project.find_obj_by(id=project_id)
+    if project.user_id == user_id:
+        flash("You can't fund your own project", 'danger')
+        return redirect(url_for('frontend.home'))
     form = PaymentForm()
     auth_form = AuthPaymentForm()
     if form.validate_on_submit():
@@ -243,18 +247,15 @@ def initiate_payment(project_id):
         user_email = form.email.data
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
-        username = current_user.username
-        user_id = current_user.id
-        user_email = current_user.email
-        # if current_user.is_authenticated:
-        #     user_id = current_user.id
-        #     user_email = current_user.email
-        # else:
-        #     ...
-        project = Project.find_obj_by(id=project_id)
-        if project.user_id == user_id:
-            flash("You can't fund your own project", 'danger')
-            return redirect(url_for('frontend.home'))
+        if current_user.is_authenticated:
+            username = current_user.username
+            user_id = current_user.id
+            user_email = current_user.email
+        else:
+            username = ''
+            user_id = secrets.token_hex(6)
+            user_email = form.email.data
+
         url = create_payment_link(project_id, amount, user_id, user_email)
         authorization_url = url['data']['authorization_url']
         # Check if the authorization URL is successfully generated
