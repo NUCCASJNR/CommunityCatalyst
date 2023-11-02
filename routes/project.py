@@ -31,6 +31,7 @@ def create_project():
         project = Project(campaign_name=form.campaign_name.data,
                           description=form.description.data,
                           target_amount=form.target_amount.data,
+                          start_date=form.start_date.data,
                           end_date=form.deadline.data,
                           category=form.category.data,
                           status='Active',

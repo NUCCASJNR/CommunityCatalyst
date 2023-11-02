@@ -30,9 +30,9 @@ class Project(BaseModel, db.Model):
     # location = db.Column(db.String(126))
     user = db.relationship('User', back_populates='projects', lazy=True)
 
-    def __init__(self, *args, **kwargs):
-        """
-        Initialization method
-        """
-        super().__init__(*args, **kwargs)
-        self.start_date = datetime.now()
+    # def __init__(self, *args, **kwargs):
+    #     """
+    #     Initialization method
+    #     """
+    #     super().__init__(*args, **kwargs)
+    #     self.start_date = datetime.now()
