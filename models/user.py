@@ -43,6 +43,7 @@ class User(BaseModel, db.Model, UserMixin):
     verification_expires_at = db.Column(db.DateTime, nullable=True)
     projects = db.relationship('Project', back_populates='user')
     contributions = db.relationship('Contribution', back_populates='user')
+    withdrawals = db.relationship('WithDraw', back_populates='user')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

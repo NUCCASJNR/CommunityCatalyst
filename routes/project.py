@@ -31,8 +31,10 @@ def create_project():
         project = Project(campaign_name=form.campaign_name.data,
                           description=form.description.data,
                           target_amount=form.target_amount.data,
+                          start_date=form.start_date.data,
                           end_date=form.deadline.data,
                           category=form.category.data,
+                          status='Active',
                           project_picture=picture_filename,
                           user=current_user)
         project.save()
@@ -54,14 +56,15 @@ def project():
     return render_template('campaign-list.html', projects=projects)
 
 
-@frontend.route('/user_project/<id>/delete', methods=['POST', 'DELETE'])
+@frontend.route('/user_project/<project_id>/delete', methods=['GET', 'DELETE'])
 @login_required
-def delete_user_project(id):
-    obj = {"id": id, "user": current_user}
+def delete_user_project(project_id):
+    obj = {"id": project_id, "user": current_user}
     query = Project.find_obj_by(**obj)
     if query:
         query.delete()
         flash('Project successfully deleted', 'success')
+        return redirect(url_for('frontend.dashboard'))
     abort(404)
 
 
