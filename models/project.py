@@ -6,7 +6,7 @@ Project's Table
 
 from models.base_model import BaseModel, db, datetime
 from models.user import User
-
+from decimal import Decimal
 
 class Project(BaseModel, db.Model):
     """
@@ -30,8 +30,9 @@ class Project(BaseModel, db.Model):
     status = db.Column(db.Enum('Active', 'Inactive', 'Completed'), default='Active')
     # location = db.Column(db.String(126))
     user = db.relationship('User', back_populates='projects', lazy=True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.current_amount is None:
+            self.current_amount = Decimal(0)
+        self.amount_left = Decimal(self.target_amount - self.current_amount)
 
-    def __init__(self, target_amount, current_amount):
-        self.target_amount = target_amount
-        self.current_amount = current_amount
-        self.amount_left = target_amount - current_amount
