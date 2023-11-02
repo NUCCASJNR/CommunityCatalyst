@@ -12,6 +12,8 @@ from forms.payment import PaymentForm, AuthPaymentForm
 from routes import frontend
 from models.contribution import Contribution
 from models.user import User
+from models.withdraw import WithDraw
+from forms.withdraw import WithdrawalForm
 import logging
 from paystackapi.paystack import Paystack
 import secrets
@@ -152,6 +154,33 @@ def send_donor_email(project_id, amount, email, username):
     else:
         print(f'Error occurred with error code: {response.status_code}')
 
+def verify_project_raised_amount(amount, project_id):
+    """
+    Verify if the project has reached its target amount.
+
+    Args:
+        target_amount (float): The target amount of the project.
+        project_id (str): The ID of the project.
+
+    Returns:
+        bool: True if the project has reached its target amount, False otherwise.
+
+    Raises:
+        None
+
+    This function verifies if the project has reached its target amount by comparing the current amount
+    to the target amount.
+    """
+    project = Project.find_obj_by(id=project_id)
+    if project:
+        amount_left = project.target_amount - project.current_amount
+        if project.current_amount == project.target_amount:
+            flash(f'Project with id {project_id} has reached its target amount', 'success')
+        else:
+            return False
+    else:
+        flash(f'Project with id {project_id} not found', 'error')
+        logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
 def update_project_raised_amount(project_id, amount):
     """
@@ -181,7 +210,7 @@ def update_project_raised_amount(project_id, amount):
         project.save()
         send_user_project_funded_notification(project_id, amount, email, username)
     else:
-        # flash(f'Project with id {project_id} not found', 'error')
+        flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
 
@@ -213,6 +242,7 @@ def record_contribution(project_id, amount, user_id):
         contribution.save()
     except Exception as e:
         logging.error(f'Error recording contribution: {e}')
+
 
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
@@ -293,12 +323,13 @@ def paystack_callback():
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
             send_donor_email(project_id, amount, email, username)
-            # flash('Payment successful', 'success')
+            flash('Payment successful', 'success')
             logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
         else:
-            # flash('Payment failed', 'danger')
+            flash('Payment failed', 'danger')
             logging.info(f'Payment failed for project_id {project_id} and amount {amount}')
     else:
         flash('Payment reference not found', 'danger')
 
     return redirect(url_for('frontend.home'))
+

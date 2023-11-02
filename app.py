@@ -3,7 +3,7 @@ from models.base_model import app
 from models.user import User
 from flask_bcrypt import Bcrypt
 from flask_wtf.csrf import CSRFProtect
-
+from models.project import Project
 from flask_login import LoginManager
 
 from flask_cors import CORS
@@ -40,6 +40,10 @@ def error(error) -> Response:
 def forbidden_err(error):
     return jsonify({"error": "unauthorized"})
 
+@app.route("/")
+def index():
+    project = Project(target_amount=1000, current_amount=500)
+    return render_template("index.html", project=project)
 
 @app.route('/token', methods=['GET'])
 def token():
