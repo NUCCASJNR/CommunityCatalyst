@@ -130,11 +130,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">New Campaign</h1>
+            <h1 class="m-0 text-dark">New Withdrawal</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ url_for('frontend.home') }}">Home</a></li>
               <li class="breadcrumb-item active">Campaign</li>
             </ol>
           </div>
@@ -151,7 +151,7 @@
             <!-- jquery validation -->
             <div class="card card-success">
               <!-- form start -->
-              <form method="post" role="form" id="quickForm" action="/create-project" enctype="multipart/form-data">
+              <form method="post" role="form" id="quickForm" action="/withdraw" enctype="multipart/form-data">
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
                 <div class="card-body">
@@ -173,90 +173,75 @@
                   </div>
                   <div class="col-md-4">
                   <div class="form-group">
-                    {{ form.category.label }}
-                    {% if form.category.errors %}
-                        {{ form.category(class="form-control form-control is-invalid") }}
+                    {{ form.project_id.label }}
+                    {% if form.project_id.errors %}
+                        {{ form.project_id(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.category.errors %}
+                            {% for error in form.project_id.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.category(class="form-control form-control") }}
+                        {{ form.project_id(class="form-control form-control") }}
                     {% endif %}
                   </div></div>
                   <div class="col-md-4">
                   <div class="form-group">
-                   {{ form.description.label }}
-                    {% if form.description.errors %}
-                        {{ form.description(class="form-control form-control is-invalid") }}
+                   {{ form.acc_number.label }}
+                    {% if form.acc_number.errors %}
+                        {{ form.acc_number(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.description.errors %}
+                            {% for error in form.acc_number.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.description(class="form-control form-control") }}
+                        {{ form.acc_number(class="form-control form-control") }}
                     {% endif %}
                   </div>
                   </div>
                   <div class="col-md-4">
                   <div class="form-group">
-                    {{ form.target_amount.label }}
-                    {% if form.target_amount.errors %}
-                        {{ form.target_amount(class="form-control form-control is-invalid") }}
+                    {{ form.acc_name.label }}
+                    {% if form.acc_name.errors %}
+                        {{ form.acc_name(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.target_amount.errors %}
+                            {% for error in form.acc_name.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.target_amount(class="form-control form-control") }}
+                        {{ form.acc_name(class="form-control form-control") }}
                     {% endif %}
                   </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      {{ form.start_date.label }}
-                    {% if form.start_date.errors %}
-                        {{ form.start_date(class="form-control form-control is-invalid") }}
+                      {{ form.bank.label }}
+                    {% if form.bank.errors %}
+                        {{ form.bank(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.start_date.errors %}
+                            {% for error in form.bank.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.start_date(class="form-control form-control") }}
-                    {% endif %}
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      {{ form.deadline.label }}
-                    {% if form.deadline.errors %}
-                        {{ form.deadline(class="form-control form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.deadline.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.deadline(class="form-control form-control") }}
+                        {{ form.bank(class="form-control form-control") }}
                     {% endif %}
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                     {{ form.picture.label }}
-                    {% if form.picture.errors %}
-                        {{ form.picture(class="form-control form-control is-invalid") }}
+                      {{ form.amount.label }}
+                    {% if form.amount.errors %}
+                        {{ form.amount(class="form-control form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in form.picture.errors %}
+                            {% for error in form.amount.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.picture(class="form-control form-control") }}
+                        {{ form.amount(class="form-control form-control") }}
                     {% endif %}
                     </div>
                   </div>
@@ -264,7 +249,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  {{ form.submit(class="btn btn-primary") }}
+                  {{ form.request_payment(class="btn btn-primary") }}
                 </div>
               </form>
             </div>

@@ -9,3 +9,4 @@ from routes.login import *
 from routes.project import *
 from routes.payment_handler import *
 from routes.profile import *
+from routes.withdraw import *
