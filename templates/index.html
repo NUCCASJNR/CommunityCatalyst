@@ -162,6 +162,7 @@
                 <p><strong>Status: </strong><small>{{ project.status }}</small></p>
                 <p><strong>Raised: ₦</strong><small class="text-success">{{ project.current_amount }}</small></p>
                 <p><strong>Goal: ₦</strong><small class="text-danger">{{ project.target_amount}}</small></p>
+                <p><strong>Amount Left: ₦</strong><small class="text-danger">{{ project.amount_left}}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="{{ url_for('frontend.initiate_payment', project_id=project.id )}}" class="btn btn-primary">Donate Now</a>
