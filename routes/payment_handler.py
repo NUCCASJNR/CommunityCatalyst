@@ -174,7 +174,7 @@ def verify_project_raised_amount(amount, project_id):
     project = Project.find_obj_by(id=project_id)
     if project:
         if project.amount_left <= amount:
-            flash(f'The project has already reached its target amount. You can no longer contribute.', 'success')
+            # flash(f'The project has already reached its target amount. You can no longer contribute.', 'success')
             return True
         else:
             return False
@@ -266,7 +266,7 @@ def initiate_payment(project_id):
     amount = 0
     user_id = ''
     user_email = ''
-
+    username = ''
     # Attempt to find the project by its ID
     project = Project.find_obj_by(id=project_id)
 
