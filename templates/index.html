@@ -157,6 +157,9 @@
               <h2 style="color:rgb(43, 35, 32);">{{ project.campaign_name }}</h2>
               <h3 style="color:rgb(43, 35, 32);"> Description: {{ project.description }}</h3>
               <div class="float-left">
+                <p><strong>Created By: </strong><small>{{ project.user.username }}</small></p>
+                <p><strong>Created On: </strong><small>{{ project.created_at.strftime('%Y-%m-%d') }}</small></p>
+                <p><strong>Status: </strong><small>{{ project.status }}</small></p>
                 <p><strong>Raised: ₦</strong><small class="text-success">{{ project.current_amount }}</small></p>
                 <p><strong>Goal: ₦</strong><small class="text-danger">{{ project.target_amount}}</small></p>
               </div>

@@ -33,6 +33,7 @@ def create_project():
                           target_amount=form.target_amount.data,
                           end_date=form.deadline.data,
                           category=form.category.data,
+                          status='Active',
                           project_picture=picture_filename,
                           user=current_user)
         project.save()
