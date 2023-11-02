@@ -12,6 +12,8 @@ from forms.payment import PaymentForm, AuthPaymentForm
 from routes import frontend
 from models.contribution import Contribution
 from models.user import User
+from models.withdraw import WithDraw
+from forms.withdraw import WithdrawalForm
 import logging
 from paystackapi.paystack import Paystack
 import secrets
@@ -152,6 +154,34 @@ def send_donor_email(project_id, amount, email, username):
     else:
         print(f'Error occurred with error code: {response.status_code}')
 
+def verify_project_raised_amount(amount, project_id):
+    """
+    Verify if the project has reached its target amount.
+
+    Args:
+        amount (float): The amount to be contributed.
+        project_id (str): The ID of the project.
+
+    Returns:
+        bool: True if the project has reached its target amount, False otherwise.
+
+    Raises:
+        None
+
+    This function verifies if the project has reached its target amount by comparing the current amount
+    to the target amount.
+    """
+    project = Project.find_obj_by(id=project_id)
+    if project:
+        if project.amount_left <= amount:
+            # flash(f'The project has already reached its target amount. You can no longer contribute.', 'success')
+            return True
+        else:
+            return False
+    else:
+        flash(f'Project with id {project_id} not found', 'error')
+        logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
+
 
 def update_project_raised_amount(project_id, amount):
     """
@@ -181,7 +211,7 @@ def update_project_raised_amount(project_id, amount):
         project.save()
         send_user_project_funded_notification(project_id, amount, email, username)
     else:
-        # flash(f'Project with id {project_id} not found', 'error')
+        flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
 
@@ -215,50 +245,78 @@ def record_contribution(project_id, amount, user_id):
         logging.error(f'Error recording contribution: {e}')
 
 
+
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
 def initiate_payment(project_id):
     """
-      Initialize the payment process for a project by rendering the payment form.
+    Initialize the payment process for a project by rendering the payment form.
 
-      Args:
-          project_id (int): The ID of the project to be funded.
+    Args:
+        project_id (int): The ID of the project to be funded.
 
-      Returns:
-          Renders the payment form template.
+    Returns:
+        Renders the payment form template.
 
-      Raises:
-          None
+    Raises:
+        None
 
-      This function renders the payment form template for the user to enter the contribution amount.
-      Upon successful form submission, it initiates the payment process by redirecting to the Paystack payment page.
+    This function renders the payment form template for the user to enter the contribution amount.
+    Upon successful form submission, it initiates the payment process by redirecting to the Paystack payment page.
     """
     amount = 0
     user_id = ''
     user_email = ''
+    username = ''
+    # Attempt to find the project by its ID
     project = Project.find_obj_by(id=project_id)
-    if project.user_id == user_id:
-        flash("You can't fund your own project", 'danger')
+
+    # Check if the project was found
+    if project is None:
+        flash("Project not found", 'error')
         return redirect(url_for('frontend.home'))
+
+    if not current_user.is_anonymous:
+        user_id = current_user.id
+
+        # Check if the user is the owner of the project
+        if project.user_id == user_id:
+            flash("You can't fund your own project", 'danger')
+            return redirect(url_for('frontend.home'))
+
     form = PaymentForm()
     auth_form = AuthPaymentForm()
+
     if form.validate_on_submit():
         amount = form.amount.data
         user_id = secrets.token_hex(6)
         user_email = form.email.data
+
+        if verify_project_raised_amount(amount, project_id):
+            flash("The project has already reached its target amount. You can no longer contribute.", 'success')
+            return redirect(url_for('frontend.home'))
+
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
-        if current_user.is_authenticated:
+
+        if not current_user.is_anonymous:
             username = current_user.username
             user_id = current_user.id
             user_email = current_user.email
-        else:
-            username = ''
-            user_id = secrets.token_hex(6)
-            user_email = form.email.data
+
+        # Ensure the project is still available
+        project = Project.find_obj_by(id=project_id)
+
+        if project is None:
+            flash("Project not found", 'error')
+            return redirect(url_for('frontend.home'))
+
+        if verify_project_raised_amount(amount, project_id):
+            flash("The project has already reached its target amount. You can no longer contribute.", 'success')
+            return redirect(url_for('frontend.home'))
 
         url = create_payment_link(project_id, amount, user_id, user_email)
         authorization_url = url['data']['authorization_url']
-        # Check if the authorization URL is successfully generated
+
         if not authorization_url.startswith('Error'):
             if amount <= 50000:
                 amount -= 50
@@ -274,6 +332,7 @@ def initiate_payment(project_id):
             return redirect(authorization_url)
 
     return render_template('payment.html', form=form, auth_form=auth_form, project_id=project_id)
+
 
 
 @frontend.route('/callback', methods=['GET'])
@@ -293,12 +352,13 @@ def paystack_callback():
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
             send_donor_email(project_id, amount, email, username)
-            # flash('Payment successful', 'success')
+            flash('Payment successful', 'success')
             logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
         else:
-            # flash('Payment failed', 'danger')
+            flash('Payment failed', 'danger')
             logging.info(f'Payment failed for project_id {project_id} and amount {amount}')
     else:
         flash('Payment reference not found', 'danger')
 
     return redirect(url_for('frontend.home'))
+
