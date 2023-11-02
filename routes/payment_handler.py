@@ -266,6 +266,7 @@ def initiate_payment(project_id):
     amount = 0
     user_id = ''
     user_email = ''
+    project = Project.find_obj_by(id=project_id)
     if project.user_id == user_id:
         flash("You can't fund your own project", 'danger')
         return redirect(url_for('frontend.home'))
