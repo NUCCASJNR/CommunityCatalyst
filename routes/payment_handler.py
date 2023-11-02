@@ -159,7 +159,7 @@ def verify_project_raised_amount(amount, project_id):
     Verify if the project has reached its target amount.
 
     Args:
-        target_amount (float): The target amount of the project.
+        amount (float): The amount to be contributed.
         project_id (str): The ID of the project.
 
     Returns:
@@ -173,14 +173,15 @@ def verify_project_raised_amount(amount, project_id):
     """
     project = Project.find_obj_by(id=project_id)
     if project:
-        amount_left = project.target_amount - project.current_amount
-        if project.current_amount == project.target_amount:
-            flash(f'Project with id {project_id} has reached its target amount', 'success')
+        if project.amount_left <= amount:
+            flash(f'The project has already reached its target amount. You can no longer contribute.', 'success')
+            return True
         else:
             return False
     else:
         flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
+
 
 def update_project_raised_amount(project_id, amount):
     """
@@ -266,15 +267,19 @@ def initiate_payment(project_id):
     user_id = ''
     user_email = ''
     project = Project.find_obj_by(id=project_id)
-    if project.user_id == user_id:
-        flash("You can't fund your own project", 'danger')
-        return redirect(url_for('frontend.home'))
+    if not current_user.is_anonymous:
+        user_id = current_user.id
+        if project.user_id == user_id:
+            flash("You can't fund your own project", 'danger')
+            return redirect(url_for('frontend.home'))
     form = PaymentForm()
     auth_form = AuthPaymentForm()
     if form.validate_on_submit():
         amount = form.amount.data
         user_id = secrets.token_hex(6)
         user_email = form.email.data
+        if verify_project_raised_amount(amount, project_id):
+            return redirect('frontend.home')
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
         if current_user.is_authenticated:
@@ -285,7 +290,8 @@ def initiate_payment(project_id):
             username = ''
             user_id = secrets.token_hex(6)
             user_email = form.email.data
-
+        if verify_project_raised_amount(amount, project_id):
+            return redirect('frontend.home')
         url = create_payment_link(project_id, amount, user_id, user_email)
         authorization_url = url['data']['authorization_url']
         # Check if the authorization URL is successfully generated
