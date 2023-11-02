@@ -279,7 +279,7 @@ def initiate_payment(project_id):
         user_id = secrets.token_hex(6)
         user_email = form.email.data
         if verify_project_raised_amount(amount, project_id):
-            return redirect('frontend.home')
+            return redirect('frontend.index')
     if auth_form.validate_on_submit():
         amount = auth_form.amount.data
         if current_user.is_authenticated:
@@ -291,7 +291,7 @@ def initiate_payment(project_id):
             user_id = secrets.token_hex(6)
             user_email = form.email.data
         if verify_project_raised_amount(amount, project_id):
-            return redirect('frontend.home')
+            return redirect('frontend.index')
         url = create_payment_link(project_id, amount, user_id, user_email)
         authorization_url = url['data']['authorization_url']
         # Check if the authorization URL is successfully generated
