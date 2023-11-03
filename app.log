@@ -1025,3 +1025,181 @@ INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 00:59:14] "[36mGET /static/member_asse
 INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 00:59:14] "[36mGET /static/js/profile.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 00:59:14] "[36mGET /static/img/profile_pics/53cc30c077d6f481.jpeg HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 00:59:14] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[generated in 0.00035s] ()
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 2075s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/animate.css/animate.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/boxicons/css/boxicons.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/glightbox/css/glightbox.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/aos/aos.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/bootstrap-icons/bootstrap-icons.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/aos/aos.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/glightbox/js/glightbox.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/swiper/swiper-bundle.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/php-email-form/validate.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/waypoints/noframework.waypoints.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/vendor/isotope-layout/isotope.pkgd.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/assets/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/img/project_pics/8af602ebea27cf24.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/img/project_pics/static/img/project_pics/logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/img/project_pics/c3928fb997a8d80f.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "[36mGET /static/new_assets/img/2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/vendor/boxicons/css/boxicons.woff2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/vendor/bootstrap-icons/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/vendor/boxicons/css/boxicons.woff HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/vendor/boxicons/css/boxicons.ttf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:31] "GET /static/assets/img/favicon.png HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 2078s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2007s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2065s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2007s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id ORDER BY contributions.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2007s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "GET /static/member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/js/adminlte.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/tables/datatables/jquery.dataTables.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:33] "[36mGET /static/member_assets/plugins/fontawesome-free/css/fa-solid-900.woff2 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:34] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 2083s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2013s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2071s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2013s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id ORDER BY contributions.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2013s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "GET /static/member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/tables/datatables/jquery.dataTables.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/js/adminlte.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "[36mGET /static/member_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:22:39] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 2108s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:03] "GET /profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "GET /member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/js/adminlte.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/tables/datatables/jquery.dataTables.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/js/profile.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/member_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "[36mGET /static/img/profile_pics/53cc30c077d6f481.jpeg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:04] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT users.username AS users_username, users.email AS users_email, users.password AS users_password, users.first_name AS users_first_name, users.middle_name AS users_middle_name, users.last_name AS users_last_name, users.gender AS users_gender, users.birthday AS users_birthday, users.address AS users_address, users.phone_number AS users_phone_number, users.profile_picture AS users_profile_picture, users.verified AS users_verified, users.verification_code AS users_verification_code, users.verification_expires_at AS users_verification_expires_at, users.id AS users_id, users.created_at AS users_created_at, users.updated_at AS users_updated_at 
+FROM users 
+WHERE users.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 2112s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2042s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT projects.user_id AS projects_user_id, projects.campaign_name AS projects_campaign_name, projects.description AS projects_description, projects.target_amount AS projects_target_amount, projects.current_amount AS projects_current_amount, projects.start_date AS projects_start_date, projects.project_picture AS projects_project_picture, projects.end_date AS projects_end_date, projects.category AS projects_category, projects.amount_left AS projects_amount_left, projects.status AS projects_status, projects.id AS projects_id, projects.created_at AS projects_created_at, projects.updated_at AS projects_updated_at 
+FROM projects 
+WHERE %s = projects.user_id ORDER BY projects.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2099s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 2042s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:SELECT contributions.user_id AS contributions_user_id, contributions.project_id AS contributions_project_id, contributions.amount AS contributions_amount, contributions.id AS contributions_id, contributions.created_at AS contributions_created_at, contributions.updated_at AS contributions_updated_at 
+FROM contributions 
+WHERE %s = contributions.user_id ORDER BY contributions.created_at DESC
+INFO:sqlalchemy.engine.Engine:[cached since 2042s ago] ('ace1db1d-e204-4632-aac5-22620fdde835',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/plugins/fontawesome-free/css/all.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/css/adminlte.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/tables/datatables-bs4/css/dataTables.bootstrap4.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "GET /static/member_assets/plugins/chart.js/Chart.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/plugins/jquery/jquery.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/js/adminlte.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/tables/datatables/jquery.dataTables.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/tables/datatables-bs4/js/dataTables.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/tables/datatables-responsive/js/responsive.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "[36mGET /static/member_assets/tables/datatables-buttons/js/buttons.bootstrap4.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:08] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Nov/2023 01:23:09] "GET /favicon.ico HTTP/1.1" 200 -
