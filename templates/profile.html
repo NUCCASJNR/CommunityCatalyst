@@ -66,13 +66,21 @@
       <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
             <li class="nav-item">
               <a href="{{ url_for('frontend.dashboard') }}" class="nav-link">
                 <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                   Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url_for('frontend.create_project') }}" class="nav-link">
+                <i class="nav-icon fa fa-tachometer-alt"></i>
+                <p>
+                  Add Campaign
                 </p>
               </a>
             </li>
@@ -84,14 +92,14 @@
                 </p>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="gallery.html" class="nav-link">
-                <i class="nav-icon fa fa-images"></i>
-                <p>
-                 Gallery
-                </p>
-              </a>
-            </li> -->
+<!--            <li class="nav-item">-->
+<!--              <a href="gallery.html" class="nav-link">-->
+<!--                <i class="nav-icon fa fa-images"></i>-->
+<!--                <p>-->
+<!--                 Gallery-->
+<!--                </p>-->
+<!--              </a>-->
+<!--            </li>-->
             <li class="nav-item">
               <a href="{{ url_for('frontend.user_donation') }}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
@@ -100,23 +108,22 @@
                 </p>
               </a>
             </li>
-         </li>
-         <li class="nav-item">
-           <a href="{{ url_for('frontend.withdraw') }}" class="nav-link">
-             <i class="nav-icon fa fa-file-invoice"></i>
-             <p>
-               Request Withdrawal
-             </p>
-           </a>
-         </li>
-         <li class="nav-item">
-           <a href="{{ url_for('frontend.user_withdrawals') }}" class="nav-link">
-             <i class="nav-icon fa fa-file-invoice"></i>
-             <p>
-               Withdrawals
-             </p>
-           </a>
-         </li>
+            <li class="nav-item">
+              <a href="{{ url_for('frontend.withdraw') }}" class="nav-link">
+                <i class="nav-icon fa fa-file-invoice"></i>
+                <p>
+                  Request Withdrawal
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url_for('frontend.user_withdrawals') }}" class="nav-link">
+                <i class="nav-icon fa fa-file-invoice"></i>
+                <p>
+                  Withdrawals
+                </p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{{ url_for('frontend.update_profile') }}" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
@@ -247,13 +254,28 @@
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Username</label>
-                                       {{ form.username(class="form-control form-control") }}
+                                       {% if form.username.errors %}
+                                           {{ form.username(class="form-control form-control is-invalid") }}
+                                           <div class="invalid-feedback">
+                                               {% for error in form.username.errors %}
+                                                   <span>{{ error }}</span>
+                                               {% endfor %}
+                                           </div>
+                                       {% else %}
+                                           {{ form.username(class="form-control form-control") }}
+                                       {% endif %}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Password</label>
-                                       <input type="email" class="form-control" placeholder="**********">
+                                       {{ form.password(class="form-control") }}
+                                    </div>
+                                 </div>
+                              <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="exampleInputEmail1">Confirm Password</label>
+                                       {{ form.confirm_password(class="form-control") }}
                                     </div>
                                  </div>
                               </div>

@@ -25,6 +25,7 @@ def update_profile():
         current_user.email = form.email.data
         current_user.address = form.address.data
         current_user.username = form.username.data
+        current_user.password = User.hash_password(form.password.data)
         db.session.commit()
         flash('Your account has been successfully updated', 'success')
         return redirect(url_for('frontend.update_profile'))
