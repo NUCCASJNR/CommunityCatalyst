@@ -12,7 +12,7 @@ Community Catalyst is a crowdfunding platform that connects individuals and orga
   - [Installation](#installation)
 - [Project Structure](#project-structure)
 - [Tables Setup and migration](#Tables-Setup-And-Migration)
-- [Contributing](#contributing)
+- [Contributors](#Contributors)
 - [License](#license)
 
 ## Project Description
@@ -70,5 +70,28 @@ echo 'export COMMUNITY_HOST="localhost"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+### Tables Setup and migration
 
+1. **Open the python interpreter**
+```bash
+python3
+```
+2. **Import the files needed for the tables creation**
+```bash
+from models.base_model import app, db
+```
+3. **Create the tables**
+```bash
+with app.app_context():
+    db.create_all()
+```
+4. **Updated any of the models and need to migrate this is for you**
+```bash
+flask db init
+flask db migrate -m 'Message'
+flask db upgrade
+```
+### Contributors
 
+- Al-Areef: [NUCCASJNR](https://github.com/NUCCASJNR)
+- xFrankenstein: [Donald]()
