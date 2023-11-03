@@ -69,7 +69,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
             <li class="nav-item">
-              <a href="{{ url_for('frontend.dashboard') }}"" class="nav-link">
+              <a href="{{ url_for('frontend.dashboard') }}" class="nav-link">
                 <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -77,23 +77,31 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url_for('frontend.user_project') }}"" class="nav-link">
+              <a href="{{ url_for('frontend.create_project') }}" class="nav-link">
+                <i class="nav-icon fa fa-tachometer-alt"></i>
+                <p>
+                  Add Campaign
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url_for('frontend.user_project') }}" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
                 <p>
                   Campaign List
                 </p>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="gallery.html" class="nav-link">
-                <i class="nav-icon fa fa-images"></i>
-                <p>
-                 Gallery
-                </p>
-              </a>
-            </li> -->
+<!--            <li class="nav-item">-->
+<!--              <a href="gallery.html" class="nav-link">-->
+<!--                <i class="nav-icon fa fa-images"></i>-->
+<!--                <p>-->
+<!--                 Gallery-->
+<!--                </p>-->
+<!--              </a>-->
+<!--            </li>-->
             <li class="nav-item">
-              <a href="{{ url_for('frontend.user_donation') }}"" class="nav-link">
+              <a href="{{ url_for('frontend.user_donation') }}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
                 <p>
                   Donations
@@ -115,8 +123,9 @@
                   Withdrawals
                 </p>
               </a>
+            </li>
             <li class="nav-item">
-              <a href="{{ url_for('frontend.update_profile') }}"" class="nav-link">
+              <a href="{{ url_for('frontend.update_profile') }}" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
                 <p>
                   Profile
