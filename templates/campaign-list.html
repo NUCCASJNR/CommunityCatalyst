@@ -83,7 +83,7 @@
           <h2>List of Projects that needs funding</h2>
           <ol>
             <li><a href="{{ url_for('frontend.home') }}">Home</a></li>
-            <li>Pricing</li>
+            <li>Campaigns</li>
           </ol>
         </div>
 
@@ -94,11 +94,11 @@
       <div class="container">
         <div class="row">
            {% for project in projects %}
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 mb-5">
             <div class="box" data-aos="fade-right">
-              <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+              <div class="filtr-item col-sm-2 image-container" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" />
+                  <img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}"/>
                 </center>
               </div>
 

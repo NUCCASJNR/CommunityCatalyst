@@ -2157,3 +2157,14 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+.image-container {
+  /*height: 300px;*/
+  /*overflow: hidden;*/
+}
+
+/*.image-container img {*/
+/*  width: inherit;*/
+/*  height: inherit;*/
+/*  object-fit: contain;*/
+/*}*/
