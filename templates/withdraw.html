@@ -40,13 +40,13 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="{{ url_for('frontend.home') }}" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="index.html">
+          <a class="nav-link" data-widget="fullscreen" href="{{ url_for('frontend.logout') }}">
              <i class="fas fa-sign-out-alt"></i>
           </a>
        </li>
@@ -69,7 +69,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
             <li class="nav-item">
-              <a href="dashboard.html" class="nav-link">
+              <a href="{{ url_for('frontend.dashboard') }}" class="nav-link">
                 <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -77,23 +77,23 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="member_campaign-list.html" class="nav-link">
+              <a href="{{ url_for('frontend.user_project') }}" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
                 <p>
                   Campaign List
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="gallery.html" class="nav-link">
                 <i class="nav-icon fa fa-images"></i>
                 <p>
                  Gallery
                 </p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a href="donation.html" class="nav-link">
+              <a href="{{ url_for('frontend.user_donation') }}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
                 <p>
                   Donations
@@ -101,18 +101,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./withdraw.html" class="nav-link">
+              <a href="{{ url_for('frontend.withdraw') }}" class="nav-link">
                 <i class="nav-icon fa fa-file-invoice"></i>
                 <p>
-                  Withdraw Request
+                  Request Withdrawal
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="profile.html" class="nav-link">
+              <a href="{{ url_for('frontend.user_withdrawals') }}" class="nav-link">
+                <i class="nav-icon fa fa-file-invoice"></i>
+                <p>
+                  Withdrawals
+                </p>
+              </a>
+            <li class="nav-item">
+              <a href="{{ url_for('frontend.update_profile') }}" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
                 <p>
-                  Profiles
+                  Profile
                 </p>
               </a>
             </li>
@@ -138,6 +145,7 @@
                </div>
             </div>
          </div>
+         {% for withdraw in user_withdrawals %}
          <section class="content">
             <div class="container-fluid">
                <div class="card card-info elevation-2">
@@ -148,38 +156,23 @@
                            <tr>
                               <th>Campaign Name</th>
                               <th>Total Amount</th>
-                              <th>Date bof Approval</th>
+                              <th>Date of Approval</th>
                               <th>Status</th>
-                              <th>Remarks</th>
-                              <th>Action</th>
+                              <!-- <th>Action</th> -->
                            </tr>
                         </thead>
                         <tbody>
                           <tr>
-                             <td>Campaign 1</td>
-                             <td>Php20,000</td>
-                             <td>Oct 17, 2021</td>
-                             <td><span class="badge bg-danger">withdrawn</span></td>
-                             <td>Remarks</td>
-                             <td class="text-right">
+                             <td>{{ withdraw.campaign_name }}</td>
+                             <td>₦ {{ withdraw.amount }}</td>
+                             <td>{{ withdraw.created_at.strftime('%Y-%m-%d') }}</td>
+                             <td><span class="badge bg-danger">{{ withdraw.status }}</span></td>
+                             <!-- <td class="text-right">
                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
                                       class="fa fa-edit"></i></a>
                                 <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
                                       class="fa fa-trash-alt"></i></a>
-                             </td>
-                          </tr>
-                          <tr>
-                             <td>Campaign 2</td>
-                             <td>Php50,000</td>
-                             <td>Oct 16, 2021</td>
-                             <td><span class="badge bg-danger">withdrawn</span></td>
-                             <td>Remarks</td>
-                             <td class="text-right">
-                                <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                      class="fa fa-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                      class="fa fa-trash-alt"></i></a>
-                             </td>
+                             </td> -->
                           </tr>
                         </tbody>
                      </table>
@@ -187,6 +180,7 @@
                </div>
             </div>
          </section>
+         {% endfor %}
       </div>
    </div>
    <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">

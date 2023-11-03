@@ -93,13 +93,20 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="withdraw.html" class="nav-link">
-                <i class="nav-icon fa fa-file-invoice"></i>
-                <p>
-                  Withdraw Request
-                </p>
-              </a>
-            </li>
+               <a href="{{ url_for('frontend.withdraw') }}" class="nav-link">
+                 <i class="nav-icon fa fa-file-invoice"></i>
+                 <p>
+                   Request Withdrawal
+                 </p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="{{ url_for('frontend.user_withdrawals') }}" class="nav-link">
+                 <i class="nav-icon fa fa-file-invoice"></i>
+                 <p>
+                   Withdrawals
+                 </p>
+               </a>
             <li class="nav-item">
               <a href="{{ url_for('frontend.update_profile') }}" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
@@ -161,7 +168,7 @@
                            <td>{{ project.description }}</td>
                            <td>₦{{ project.target_amount }}</td>
                               <td>₦{{ project.current_amount }}</td>
-                           <td>{{ project.end_date }}</td>
+                           <td>{{ project.end_date.strftime('%Y-%m-%d') }}</td>
                             <td>{{ project.id }}</td>
                              <td><img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" /></td>
 <!--                             <td><span class="badge bg-success">approve</span></td>-->

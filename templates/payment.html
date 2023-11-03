@@ -1,48 +1,192 @@
 <!-- templates/payment.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Add your HTML header content here -->
-</head>
-<body>
-    <h1>Make a Payment</h1>
-    {% if current_user.is_authenticated %}
-    <form method="POST">
-        {{ auth_form.hidden_tag() }}
-        {{ auth_form.csrf_token }}
-        <div class="form-group">
-            <label for="{{ auth_form.amount.id }}">Amount</label>
-            {{ auth_form.amount(class="form-control") }}
-            {% for error in auth_form.amount.errors %}
-                <p class="text-danger">{{ error }}</p>
-            {% endfor %}
-        </div>
-        {{ auth_form.submit(class="btn btn-primary") }}
-    </form>
-    {% else %}
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.csrf_token }}
-        <div class="form-group">
-            <label for="{{ form.amount.id }}">Amount</label>
-            {{ form.amount(class="form-control") }}
-            {% for error in form.amount.errors %}
-                <p class="text-danger">{{ error }}</p>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.email.id }}">Email</label>
-            {{ form.email(class="form-control") }}
-            {% for error in form.email.errors %}
-                <p class="text-danger">{{ error }}</p>
-            {% endfor %}
-        </div>
-        {{ form.submit(class="btn btn-primary") }}
-    </form>
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <!-- Add your HTML header content here -->#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Make a Payment</h1>#}
+{#    {% if current_user.is_authenticated %}#}
+{#    <form method="POST">#}
+{#        {{ auth_form.hidden_tag() }}#}
+{#        {{ auth_form.csrf_token }}#}
+{#        <div class="form-group">#}
+{#            <label for="{{ auth_form.amount.id }}">Amount</label>#}
+{#            {{ auth_form.amount(class="form-control") }}#}
+{#            {% for error in auth_form.amount.errors %}#}
+{#                <p class="text-danger">{{ error }}</p>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        {{ auth_form.submit(class="btn btn-primary") }}#}
+{#    </form>#}
+{#    {% else %}#}
+{#    <form method="POST">#}
+{#        {{ form.hidden_tag() }}#}
+{#        {{ form.csrf_token }}#}
+{#        <div class="form-group">#}
+{#            <label for="{{ form.amount.id }}">Amount</label>#}
+{#            {{ form.amount(class="form-control") }}#}
+{#            {% for error in form.amount.errors %}#}
+{#                <p class="text-danger">{{ error }}</p>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <label for="{{ form.email.id }}">Email</label>#}
+{#            {{ form.email(class="form-control") }}#}
+{#            {% for error in form.email.errors %}#}
+{#                <p class="text-danger">{{ error }}</p>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        {{ form.submit(class="btn btn-primary") }}#}
+{#    </form>#}
+{##}
+{#{% endif %}#}
+{##}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
 
-{% endif %}
 
+{% extends "layout.html" %}
+{% block content %}
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Community Catalyst - Login</title>
+      <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="../static/new_assets/plugins/fontawesome-free/css/all.min.css">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="../static/new_assets/css/adminlte.min.css">
+   </head>
+   <body class="hold-transition login-page">
+      <div class="login-box">
+         <!-- /.login-logo -->
+         <div class="card card-outline card-warning">
+            <div class="card-header text-center">
+               <a href="{{ url_for('frontend.home') }}" class="brand-link">
+               <img src="../static/new_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom: -50px;">
+               </a>
+            </div>
+            <div class="card-body" >
+            {% if current_user.is_authenticated %}
+               <form action="" method="post">
+                  {{ auth_form.csrf_token }}
+                  <div class="input-group mb-3">
+                      {% if auth_form.amount.errors %}
+                            {{ auth_form.amount(class="form-control fc is-invalid") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user"></span>
+                        </div>
+                     </div>
+                            <div class="invalid-feedback">
+                                {% for error in auth_form.amount.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ auth_form.amount(class="form-control fc") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-money-bill"></span>
+                        </div>
+                     </div>
+                        {% endif %}
+{#                    {{ form.username_or_email(class="form-control", placeholder="Username Or Email") }}#}
+                  </div>
+<!--                  <div class="input-group mb-3">-->
+<!--                        <select class="form-control">-->
+<!--                            <option>Admin</option>-->
+<!--                            <option>Member</option>-->
+<!--                        </select>-->
+<!--                        <div class="input-group-append">-->
+<!--                        <div class="input-group-text">-->
+<!--                           <span class="fas fa-users"></span>-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+                  <div class="row">
+                     <div class="col-6 offset-3">
+                        {{ auth_form.submit(class="btn btn-block") }}
+                     </div>
+                  </div>
+               </form>
+            {% else %}
+                <form action="" method="post">
+                  {{ form.csrf_token }}
+                  <div class="input-group mb-3">
+                      {% if form.amount.errors %}
+                            {{ form.amount(class="form-control fc is-invalid") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user"></span>
+                        </div>
+                     </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.amount.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.amount(class="form-control fc") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-money-bill"></span>
+                        </div>
+                     </div>
+                        {% endif %}
+{#                    {{ form.username_or_email(class="form-control", placeholder="Username Or Email") }}#}
+                  </div>
+                <div class="input-group mb-3">
+                      {% if form.email.errors %}
+                            {{ form.email(class="form-control fc is-invalid") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user"></span>
+                        </div>
+                     </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control fc") }}
+                          <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-at"></span>
+                        </div>
+                     </div>
+                        {% endif %}
+{#                    {{ form.username_or_email(class="form-control", placeholder="Username Or Email") }}#}
+                  </div>
+                <div class="row">
+                     <div class="col-6 offset-3">
+                        {{ form.submit(class="btn btn-block") }}
+                     </div>
+                  </div>
+               </form>
+            {% endif %}
+<!--                  <div class="input-group mb-3">-->
+<!--                        <select class="form-control">-->
+<!--                            <option>Admin</option>-->
+<!--                            <option>Member</option>-->
+<!--                        </select>-->
+<!--                        <div class="input-group-append">-->
+<!--                        <div class="input-group-text">-->
+<!--                           <span class="fas fa-users"></span>-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
 
-
-</body>
-</html>
+            </div>
+            <!-- /.card-body -->
+         </div>
+         <!-- /.card -->
+      </div>
+      <!-- /.login-box -->
+   </body>
+{% endblock content %}
