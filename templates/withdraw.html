@@ -57,7 +57,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="dashboard.html" class="brand-link">
+      <a href="{{ url_for('frontend.home') }}"" class="brand-link">
         <img src="../static/member_assets/img/logo.png" alt="Logo" width="200" style="margin-bottom:-50px;margin-top:-50px"
              style="opacity: .8">
       </a>
@@ -77,6 +77,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ url_for('frontend.create_project') }}" class="nav-link">
+                <i class="nav-icon fa fa-tachometer-alt"></i>
+                <p>
+                  Add Campaign
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ url_for('frontend.user_project') }}" class="nav-link">
                 <i class="nav-icon fa fa-flag-checkered"></i>
                 <p>
@@ -84,14 +92,14 @@
                 </p>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="gallery.html" class="nav-link">
-                <i class="nav-icon fa fa-images"></i>
-                <p>
-                 Gallery
-                </p>
-              </a>
-            </li> -->
+<!--            <li class="nav-item">-->
+<!--              <a href="gallery.html" class="nav-link">-->
+<!--                <i class="nav-icon fa fa-images"></i>-->
+<!--                <p>-->
+<!--                 Gallery-->
+<!--                </p>-->
+<!--              </a>-->
+<!--            </li>-->
             <li class="nav-item">
               <a href="{{ url_for('frontend.user_donation') }}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
@@ -115,6 +123,7 @@
                   Withdrawals
                 </p>
               </a>
+            </li>
             <li class="nav-item">
               <a href="{{ url_for('frontend.update_profile') }}" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>

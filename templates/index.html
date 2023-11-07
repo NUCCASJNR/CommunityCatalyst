@@ -91,7 +91,7 @@
         <div class="carousel-item active" style="background-image: url(static/new_assets/img/2.jpg);">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
-              <h3>Help, Donate & <span>Fundrise</span></h3>
+              <h3>Help, Donate & <span>Fundraise</span></h3>
               <h1>Your Contribution is Important</h1>
               <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
             </div>
@@ -146,11 +146,11 @@
       <div class="container">
         <div class="row">
            {% for project in projects %}
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 mb-5">
             <div class="box" data-aos="fade-right">
               <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                 <center>
-                  <img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" width="380" />
+                  <img src="{{ url_for('static', filename='img/project_pics/{}'.format(project.project_picture)) }}" />
                 </center>
               </div>
 
@@ -160,9 +160,9 @@
                 <p><strong>Created By: </strong><small>{{ project.user.username }}</small></p>
                 <p><strong>Created On: </strong><small>{{ project.created_at.strftime('%Y-%m-%d') }}</small></p>
                 <p><strong>Status: </strong><small>{{ project.status }}</small></p>
-                <p><strong>Raised: ₦</strong><small class="text-success">{{ project.current_amount }}</small></p>
-                <p><strong>Goal: ₦</strong><small class="text-danger">{{ project.target_amount}}</small></p>
-                <p><strong>Amount Left: ₦</strong><small class="text-danger">{{ project.amount_left}}</small></p>
+                <p><strong>Raised: </strong><small class="text-success">₦{{ project.current_amount }}</small></p>
+                <p><strong>Goal: </strong><small class="text-danger">₦{{ project.target_amount}}</small></p>
+                <p><strong>Amount Left: </strong><small class="text-danger">₦{{ project.amount_left}}</small></p>
               </div>
               <div class="btn-wrap">
                 <a href="{{ url_for('frontend.initiate_payment', project_id=project.id )}}" class="btn btn-primary">Donate Now</a>

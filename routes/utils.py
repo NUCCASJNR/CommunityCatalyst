@@ -61,9 +61,24 @@ def save_picture(project_picture, path):
     print("Picture Path:", picture_path)
 
     output_size = (960, 540)
-    i = Image.open(project_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
+    # Open the image
+    img = Image.open(project_picture)
+
+    # Set the new height while maintaining aspect ratio
+    new_height = 300  # Set your desired height
+
+    # Calculate the new width to maintain the aspect ratio
+    width_percent = (new_height / float(img.size[1]))
+    new_width = int((float(img.size[0]) * float(width_percent)))
+
+    # Resize the image
+    resized_img = img.resize((new_width, new_height))
+
+    # Save the resized image
+    resized_img.save(picture_path)
+    # i = Image.open(project_picture)
+    img.thumbnail((new_width, new_height))
+    # i.save(picture_path)
     return picture_filename
 
 

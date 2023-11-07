@@ -20,10 +20,10 @@ class ProfileForm(FlaskForm):
     email = StringField('Email', validators=[Email(), DataRequired()])
     address = StringField('Address', validators=[Length(max=126)])
     username = StringField('Username', validators=[DataRequired(), Length(min=3, max=25)])
-    # password = PasswordField('Password', validators=[DataRequired(), Length(min=8)],
-    #                          render_kw={'placeholder': "Must be at least 8 characters"})
-    # confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
-    #                                  render_kw={'placeholder': 'Confirm Password'})
+    password = PasswordField('Password', validators=[Length(min=8)],
+                             render_kw={'placeholder': "Must be at least 8 characters"})
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password')],
+                                     render_kw={'placeholder': 'Confirm Password'})
     submit = SubmitField('Update')
 
     def validate_username(self, username):
