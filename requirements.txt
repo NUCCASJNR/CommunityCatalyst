@@ -46,4 +46,4 @@ Werkzeug==2.2.3
 WTForms==3.0.1
 requests~=2.31.0
 schedule~=1.2.1
-paystackapi=2.1.0
+paystackapi==2.1.0
