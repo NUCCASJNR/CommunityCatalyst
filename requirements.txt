@@ -42,10 +42,7 @@ redis~=5.0.0
 six==1.16.0
 SQLAlchemy==2.0.22
 tomli==2.0.1
-typing_extensions==4.8.0
 Werkzeug==2.3.7
 WTForms==3.0.1
-zipp==1.0.0
-
 requests~=2.31.0
 schedule~=1.2.1
