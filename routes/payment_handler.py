@@ -154,6 +154,7 @@ def send_donor_email(project_id, amount, email, username):
     else:
         print(f'Error occurred with error code: {response.status_code}')
 
+
 def verify_project_raised_amount(amount, project_id):
     """
     Verify if the project has reached its target amount.
@@ -215,6 +216,16 @@ def update_project_raised_amount(project_id, amount):
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
 
+def update_project_amount_left(project_id):
+    """Docs later"""
+    project = Project.find_obj_by(id=project_id)
+    if project:
+        project.amount_left = project.target_amount - project.current_amount
+        project.save()
+    else:
+        flash(f'Project with id {project_id} not found', 'error')
+
+
 def record_contribution(project_id, amount, user_id):
     """
       Record a contribution in the contributions table for tracking.
@@ -243,7 +254,6 @@ def record_contribution(project_id, amount, user_id):
         contribution.save()
     except Exception as e:
         logging.error(f'Error recording contribution: {e}')
-
 
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
@@ -318,11 +328,6 @@ def initiate_payment(project_id):
         authorization_url = url['data']['authorization_url']
 
         if not authorization_url.startswith('Error'):
-            if amount <= 50000:
-                amount -= 50
-            else:
-                amount -= 100
-
             session['payment_reference'] = url['data']['reference']
             session['amount'] = amount
             session['project_id'] = project_id
@@ -332,7 +337,6 @@ def initiate_payment(project_id):
             return redirect(authorization_url)
 
     return render_template('payment.html', form=form, auth_form=auth_form, project_id=project_id)
-
 
 
 @frontend.route('/callback', methods=['GET'])
@@ -351,6 +355,7 @@ def paystack_callback():
             # Update project raised amount and record contribution
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
+            update_project_amount_left(project_id)
             send_donor_email(project_id, amount, email, username)
             flash('Payment successful', 'success')
             logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
