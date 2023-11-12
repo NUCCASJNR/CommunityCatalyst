@@ -209,21 +209,13 @@ def update_project_raised_amount(project_id, amount):
     if project:
         amount = Decimal(amount)
         project.current_amount += amount
+        project.amount_left = project.target_amount - project.current_amount
         project.save()
         send_user_project_funded_notification(project_id, amount, email, username)
     else:
         flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
 
-
-def update_project_amount_left(project_id):
-    """Docs later"""
-    project = Project.find_obj_by(id=project_id)
-    if project:
-        project.amount_left = project.target_amount - project.current_amount
-        project.save()
-    else:
-        flash(f'Project with id {project_id} not found', 'error')
 
 
 def record_contribution(project_id, amount, user_id):
@@ -355,7 +347,6 @@ def paystack_callback():
             # Update project raised amount and record contribution
             update_project_raised_amount(project_id, amount)
             record_contribution(project_id, amount, user_id)
-            update_project_amount_left(project_id)
             send_donor_email(project_id, amount, email, username)
             flash('Payment successful', 'success')
             logging.info(f'Payment successful for project_id {project_id} and amount {amount}')
