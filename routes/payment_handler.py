@@ -154,6 +154,7 @@ def send_donor_email(project_id, amount, email, username):
     else:
         print(f'Error occurred with error code: {response.status_code}')
 
+
 def verify_project_raised_amount(amount, project_id):
     """
     Verify if the project has reached its target amount.
@@ -208,11 +209,13 @@ def update_project_raised_amount(project_id, amount):
     if project:
         amount = Decimal(amount)
         project.current_amount += amount
+        project.amount_left = project.target_amount - project.current_amount
         project.save()
         send_user_project_funded_notification(project_id, amount, email, username)
     else:
         flash(f'Project with id {project_id} not found', 'error')
         logging.debug(f'Creating payment link for project_id {project_id} and amount {amount}')
+
 
 
 def record_contribution(project_id, amount, user_id):
@@ -243,7 +246,6 @@ def record_contribution(project_id, amount, user_id):
         contribution.save()
     except Exception as e:
         logging.error(f'Error recording contribution: {e}')
-
 
 
 @frontend.route('/pay/<string:project_id>', methods=['GET', 'POST'])
@@ -318,11 +320,6 @@ def initiate_payment(project_id):
         authorization_url = url['data']['authorization_url']
 
         if not authorization_url.startswith('Error'):
-            if amount <= 50000:
-                amount -= 50
-            else:
-                amount -= 100
-
             session['payment_reference'] = url['data']['reference']
             session['amount'] = amount
             session['project_id'] = project_id
@@ -332,7 +329,6 @@ def initiate_payment(project_id):
             return redirect(authorization_url)
 
     return render_template('payment.html', form=form, auth_form=auth_form, project_id=project_id)
-
 
 
 @frontend.route('/callback', methods=['GET'])
